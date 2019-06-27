@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Drag and Drop library Example</title>
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="style.css">
+  <!-- jQuery -->
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+  <!-- jQuery UI -->
+	<script src="http://code.jquery.com/ui/1.10.4/jquery-ui.min.js"></script>
+  <!-- NestedSortable: jQuery plugin -->
+	<script type="text/javascript" src="js/nestedSortable.js"></script>
+  <!-- Custom functions -->
+  <script type="text/javascript" src="js/custom.js"></script>
+</head>
+
+<body>
+  <header>
+    <h1>Training Plan - D1588x1819_ARI</h1>
+  </header>
+  <div class="container">
+  <div class="row">
+    <div id="library-view" class="col-md-8">
+      <h2>Library</h2>
+      <!-- Level 1 -->
+  		<ol class="sortable ui-sortable mjs-nestedSortable-branch mjs-nestedSortable-expanded">
+        <!-- Level 1-1 -->
+  		  <li style="display: list-item;" class="menu-item menu-item_1 mjs-nestedSortable-branch mjs-nestedSortable-expanded">
+  		    <div class="menuDiv">
+            <span title="Click to show/hide children" class="disclose glyphicon glyphicon-minus"></span>
+  			    <span title="Click to show/hide item editor" class="expandEditor glyphicon glyphicon-chevron-down"></span>
+			      <span class="itemTitle">* Leading Projects</span>
+            <span title="Click to delete item." class="delete-menu glyphicon glyphicon-remove"></span>
+            <span title="Click to highlight item." class="highlight glyphicon glyphicon-star-empty"></span>
+  			    <div class="menuEdit hidden">
+  				    <p>Experience with participating in, and leading, projects</p>
+  			    </div>
+  		    </div>
+
+          <!-- Level 2 -->
+  		    <ol>
+            <!-- Level 2-1 -->
+  			    <li style="display: list-item;" class="menu-item menu-item_4 mjs-nestedSortable-branch mjs-nestedSortable-expanded">
+  			      <div class="menuDiv">
+  				      <span title="Click to show/hide children" class="disclose glyphicon glyphicon-minus"></span>
+    				    <span title="Click to show/hide item editor" class="expandEditor glyphicon glyphicon-chevron-down"></span>
+  				      <span class="itemTitle">PM Methods (GIS4212)</span>
+                <span title="Click to delete item." class="delete-menu glyphicon glyphicon-remove"></span>
+                <span title="Click to highlight item." class="highlight glyphicon glyphicon-star-empty"></span>
+        			  <div class="menuEdit hidden">
+        				  <p>Experienced using Gantt charting, spiral project management and agile methods</p>
+        			  </div>
+  			      </div>
+
+            <!-- Level3 -->
+  			    <ol>
+              <!-- Level 3-1 -->
+  				    <li class="menu-item menu-item_4 mjs-nestedSortable-leaf">
+  				      <div class="menuDiv">
+  					      <span title="Click to show/hide children" class="disclose glyphicon glyphicon-minus"></span>
+  					      <span title="Click to show/hide item editor" class="expandEditor glyphicon glyphicon-chevron-down"></span>
+  					      <span class="itemTitle">Tech Writing (GIS 4111)</span>
+                  <span title="Click to delete item." class="delete-menu glyphicon glyphicon-remove"></span>
+                  <span title="Click to highlight item." class="highlight glyphicon glyphicon-star-empty"></span>
+  					      <div class="menuEdit hidden">
+  						      <p>Experience with technical writing for documentation of processes, training</p>
+  					      </div>
+  				      </div>
+  				    </li> <!-- Level 3-1 end -->
+  			    </ol> <!-- Level 3 end -->
+          </li> <!-- Level 2-1 end -->
+
+          <!-- Level 2-2 -->
+  			  <li style="display: list-item;" class="menu-item menu-item_5 mjs-nestedSortable-leaf">
+  			    <div class="menuDiv">
+  				    <span title="Click to show/hide children" class="disclose glyphicon glyphicon-minus"></span>
+  				    <span title="Click to show/hide item editor" class="expandEditor glyphicon glyphicon-chevron-down"></span>
+  				    <span class="itemTitle">Tech Writing (GIS 4111)</span>
+              <span title="Click to delete item." class="delete-menu glyphicon glyphicon-remove"></span>
+              <span title="Click to highlight item." class="highlight glyphicon glyphicon-star-empty"></span>
+  				    <div class="menuEdit hidden">
+  					    <p>Experience with technical writing for documentation of processes, training</p>
+  				    </div>
+  			    </div>
+  			  </li> <!-- Level 2-2 end -->
+  		  </ol> <!-- Level 2 end -->
+  		</li> <!-- Level 1-1 end -->
+
+  		<ol>
+  	  </ol>
+
+      <!-- Level 1-2 -->
+  		<li style="display: list-item;" class="menu-item menu-item_2 mjs-nestedSortable-leaf">
+  		  <div class="menuDiv">
+  			  <span title="Click to show/hide children" class="disclose glyphicon glyphicon-minus"></span>
+  			  <span title="Click to show/hide item editor" class="expandEditor glyphicon glyphicon-chevron-down"></span>
+			    <span class="itemTitle">Team Work (GIS 4111, GIS 4113)</span>
+          <span title="Click to delete item." class="delete-menu glyphicon glyphicon-remove"></span>
+          <span title="Click to highlight item." class="highlight glyphicon glyphicon-star-empty"></span>
+  			  <div class="menuEdit hidden">
+  				  <p>Experience in co-worker, superior, subordinate work relationship management</p>
+  			  </div>
+  		  </div>
+  		</li> <!-- Level 1-2 end -->
+
+      <!-- Level 1-3 -->
+  		<li class="menu-item menu-item_3 mjs-nestedSortable-leaf">
+  		  <div class="menuDiv">
+  			  <span title="Click to show/hide children" class="disclose glyphicon glyphicon-minus"></span>
+  			  <span title="Click to show/hide item editor" class="expandEditor glyphicon glyphicon-chevron-down"></span>
+			    <span class="itemTitle">Project Communication (GIS4212)</span>
+          <span title="Click to delete item." class="delete-menu glyphicon glyphicon-remove"></span>
+          <span title="Click to highlight item." class="highlight glyphicon glyphicon-star-empty"></span>
+  			  <div class="menuEdit hidden">
+  				  <p>Effectively communicate the essentials of a GIS project</p>
+  			  </div>
+  		  </div>
+  		</li> <!-- Level 1-3 end -->
+  	 </ol> <!-- Level 1 end -->
+   </div>
+
+    <!-- Competencies -->
+    <div id="competency-view" class="col-md-4">
+      <h2>Competencies</h2>
+      <ol class="sortable ui-sortable mjs-nestedSortable-branch mjs-nestedSortable-expanded">
+        <!-- Level 1-1 -->
+        <li style="display: list-item;" class="menu-item menu-item_1 mjs-nestedSortable-branch mjs-nestedSortable-expanded">
+          <div class="menuDiv">
+            <span title="Click to show/hide children" class="disclose glyphicon glyphicon-minus"></span>
+            <span title="Click to show/hide item editor" class="expandEditor glyphicon glyphicon-chevron-down"></span>
+            <span class="itemTitle">* Leading Projects</span>
+            <span title="Click to delete item." class="delete-menu glyphicon glyphicon-remove"></span>
+            <span title="Click to highlight item." class="highlight glyphicon glyphicon-star-empty"></span>
+            <div class="menuEdit hidden">
+              <p>Experience with participating in, and leading, projects</p>
+            </div>
+          </div>
+        </li>
+
+        <!-- Level 1-2 -->
+        <li style="display: list-item;" class="menu-item menu-item_2 mjs-nestedSortable-leaf">
+    		  <div class="menuDiv">
+    			  <span title="Click to show/hide children" class="disclose glyphicon glyphicon-minus"></span>
+    			  <span title="Click to show/hide item editor" class="expandEditor glyphicon glyphicon-chevron-down"></span>
+  			    <span class="itemTitle">Team Work (GIS 4111, GIS 4113)</span>
+            <span title="Click to delete item." class="delete-menu glyphicon glyphicon-remove"></span>
+            <span title="Click to highlight item." class="highlight glyphicon glyphicon-star-empty"></span>
+    			  <div class="menuEdit hidden">
+    				  <p>Experience in co-worker, superior, subordinate work relationship management</p>
+    			  </div>
+    		  </div>
+    		</li>
+
+        <!-- Level 1-3 -->
+    		<li class="menu-item menu-item_3 mjs-nestedSortable-leaf">
+    		  <div class="menuDiv">
+    			  <span title="Click to show/hide children" class="disclose glyphicon glyphicon-minus"></span>
+    			  <span title="Click to show/hide item editor" class="expandEditor glyphicon glyphicon-chevron-down"></span>
+    			   <span class="itemTitle">Project Communication (GIS4212)</span>
+            <span title="Click to delete item." class="delete-menu glyphicon glyphicon-remove"></span>
+            <span title="Click to highlight item." class="highlight glyphicon glyphicon-star-empty"></span>
+    			  <div class="menuEdit hidden">
+    				  <p>Effectively communicate the essentials of a GIS project</p>
+    			  </div>
+    		  </div>
+    		</li>
+
+        <!-- Level 2-1 -->
+        <li style="display: list-item;" class="menu-item menu-item_4 mjs-nestedSortable-branch mjs-nestedSortable-expanded">
+          <div class="menuDiv">
+            <span title="Click to show/hide children" class="disclose glyphicon glyphicon-minus"></span>
+            <span title="Click to show/hide item editor" class="expandEditor glyphicon glyphicon-chevron-down"></span>
+            <span class="itemTitle">PM Methods (GIS4212)</span>
+            <span title="Click to delete item." class="delete-menu glyphicon glyphicon-remove"></span>
+            <span title="Click to highlight item." class="highlight glyphicon glyphicon-star-empty"></span>
+            <div class="menuEdit hidden">
+              <p>Experienced using Gantt charting, spiral project management and agile methods</p>
+            </div>
+          </div>
+        </li>
+
+        <!-- Level 2-2 -->
+        <li style="display: list-item;" class="menu-item menu-item_5 mjs-nestedSortable-leaf">
+          <div class="menuDiv">
+            <span title="Click to show/hide children" class="disclose glyphicon glyphicon-minus"></span>
+            <span title="Click to show/hide item editor" class="expandEditor glyphicon glyphicon-chevron-down"></span>
+            <span class="itemTitle">Tech Writing (GIS 4111)</span>
+            <span title="Click to delete item." class="delete-menu glyphicon glyphicon-remove"></span>
+            <span title="Click to highlight item." class="highlight glyphicon glyphicon-star-empty"></span>
+            <div class="menuEdit hidden">
+              <p>Experience with technical writing for documentation of processes, training</p>
+            </div>
+          </div>
+        </li> <!-- Level 2-2 end -->
+      </ol>
+    </div>
+  </div><!-- row end -->
+</div><!-- container end -->
+</body>
+</html>

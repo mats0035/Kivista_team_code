@@ -1,0 +1,101 @@
+body {
+	font-size: 13px;
+	font-family: Helvetica, arial, sans-serif;
+	margin: 20px auto;
+
+}
+
+.placeholder {
+	outline: 1px dashed #4183C4;
+}
+
+.mjs-nestedSortable-error {
+	background: #fbe3e4;
+	border-color: transparent;
+}
+
+#tree {
+	width: 550px;
+	margin: 0;
+}
+
+ol.sortable,ol.sortable ol {
+	list-style-type: none;
+}
+
+.sortable li div {
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	cursor: move;
+	margin: 5px;
+	padding: 10px;
+}
+
+li.mjs-nestedSortable-collapsed.mjs-nestedSortable-hovering div {
+	border-color: #999;
+}
+
+.disclose, .expandEditor {
+	cursor: pointer;
+	width: 20px;
+}
+
+.sortable li.mjs-nestedSortable-collapsed > ol {
+	display: none;
+}
+
+.sortable li.mjs-nestedSortable-branch > div > .disclose {
+	display: inline-block;
+}
+
+.sortable span.ui-icon {
+	display: inline-block;
+	margin: 0;
+	padding: 0;
+}
+
+.menuDiv {
+	background: #EBEBEB;
+}
+
+.menuEdit {
+	background: #FFF;
+	margin-bottom: 0 !important;
+}
+
+.itemTitle {
+	vertical-align: middle;
+	cursor: pointer;
+}
+
+.delete-menu, .highlight {
+	float: right;
+	cursor: pointer;
+	margin-left: 10px;
+}
+
+h1, h2, h3 {
+	text-align: center;
+}
+
+p,ol,ul,pre,form {
+	margin-top: 0;
+	margin-bottom: 1em;
+}
+
+#competency-view li .disclose, #competency-view li .delete-menu, #library-view li .highlight {
+	display: none;
+}
+
+#library-view {
+	margin-left: -40px;
+}
+
+.glyphicon {
+	top: 3px;
+}
+
+.highlight-show {
+background: #f7e30c;
+}
