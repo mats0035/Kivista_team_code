@@ -46,10 +46,10 @@ $().ready(function () {
     expandOnHover: 700,
     startCollapsed: false,
     excludeRoot: true,
-    rootID: 'root'
+    rootID: 'root',
     // axis: 'x',
     // containment: 'parent',
-    // connectWith: '#library-view ol.sortable'  // Enable drag & drop between the columns
+    connectWith: '#library-view ol.sortable'  // Enable drag & drop between the columns
   })
 
   // Set events on the buttons
@@ -84,7 +84,7 @@ $().ready(function () {
   $('.highlight').click(function () {
     // Get the second class name of the parent li
     var highlightClass = $(this).parent().parent().attr('class').split(' ')[1]
-    var highlightItem = '.' + highlightClass + ' > .menuDiv'
+    var highlightItem = '.' + highlightClass + ' > .menuDiv .glyphicon-star'
     $(highlightItem).toggleClass('highlight-show')
   })
 })
