@@ -88,3 +88,9 @@ $().ready(function () {
     $(highlightItem).toggleClass('highlight-show')
   })
 })
+
+const movies = [
+  {
+    courseName: "Team Word",
+    courseCode: GIS4111
+  },

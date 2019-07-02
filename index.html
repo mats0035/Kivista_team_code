@@ -24,8 +24,19 @@
   <div class="container">
   <div class="row">
     <div id="library-view" class="col-md-8">
-      <h2>Library</h2>
+
+        <select id="rating-filter">
+            <option value="">Sort by</option>
+            <option value="Low rating">Course Code</option>
+            <option value="High rating">Course Name</option>
+            <option value="Low rating">Selected First</option>
+            <option value="High rating">Unladdered First</option>
+          </select>
+          <h2>Library</h2>
+ 
+      
       <!-- Level 1 -->
+
   		<ol class="sortable ui-sortable mjs-nestedSortable-branch mjs-nestedSortable-expanded">
         <!-- Level 1-1 -->
   		  <li style="display: list-item;" class="menu-item menu-item_1 mjs-nestedSortable-branch mjs-nestedSortable-expanded">
@@ -119,7 +130,8 @@
   			  </div>
   		  </div>
   		</li> <!-- Level 1-3 end -->
-  	 </ol> <!-- Level 1 end -->
+     </ol> <!-- Level 1 end -->
+  
    </div>
 
     <!-- Competencies -->

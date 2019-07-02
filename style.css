@@ -91,6 +91,7 @@ p,ol,ul,pre,form {
 
 #library-view {
 	margin-left: -40px;
+
 }
 
 .glyphicon {
@@ -100,3 +101,28 @@ p,ol,ul,pre,form {
 .highlight-show {
 background: #f7e30c;
 }
+
+
+	/* #rating-filter {
+	height: 50px;
+	padding: 0 10px;
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+	  color: white;
+	  padding: 5px;
+	  background:#2a4b7c;
+	  border: none;
+	  cursor: pointer;
+	}
+   */
+
+   #rating-filter {
+	background:#2a4b7c;
+	color: white;
+	
+   }
+
+
+  
+   
