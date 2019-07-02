@@ -84,7 +84,8 @@ p,ol,ul,pre,form {
 	margin-bottom: 1em;
 }
 
-#competency-view li .disclose, #competency-view li .delete-menu, #library-view li .highlight {
+/* #competency-view li .disclose, #competency-view li .delete-menu, #library-view li .highlight { */
+#competency-view li .disclose, #competency-view li .delete-menu {
 	display: none;
 }
 
