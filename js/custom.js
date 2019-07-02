@@ -1,27 +1,52 @@
 $().ready(function () {
   // Library view: drag & drop function
-  $('#library-view ol.sortable').nestedSortable({
-    forcePlaceholderSize: true,
-    handle: 'div',
-    // helper: 'clone',
-    helper: function (e, li) {
-      this.copyHelper = li.clone(true).insertAfter(li)
-      $(this).data('copied', false)
-      return li.clone()
-    },
-    items: 'li',
-    opacity: 0.6,
-    placeholder: 'placeholder',
-    revert: 250,
-    tabSize: 25,
-    tolerance: 'pointer',
-    toleranceElement: '> div',
-    maxLevels: 0, // 0:unlimited
-    isTree: true,
-    expandOnHover: 700,
-    startCollapsed: false,
-    excludeRoot: true,
-    rootID: 'root'
+  $('#library-view ol.sortable').on('click', function(event) {
+    // If the shift key is pressed => duplicate the element on drop
+    if (event.shiftKey) {
+      $(this).nestedSortable({
+        forcePlaceholderSize: true,
+        handle: 'div',
+        // Duplicate the element with events
+        helper: function (e, li) {
+          this.copyHelper = li.clone(true).insertAfter(li)
+          $(this).data('copied', false)
+          return li.clone()
+        },
+        items: 'li',
+        opacity: 0.6,
+        placeholder: 'placeholder',
+        revert: 250,
+        tabSize: 25,
+        tolerance: 'pointer',
+        toleranceElement: '> div',
+        maxLevels: 0, // 0:Allow unlimited nested list
+        isTree: true,
+        expandOnHover: 700,
+        startCollapsed: false,
+        excludeRoot: true,
+        rootID: 'root'
+      })
+    // If the shift key is not pressed => just move the element
+    } else {
+       $(this).nestedSortable({
+        forcePlaceholderSize: true,
+        handle: 'div',
+        helper: 'clone',
+        items: 'li',
+        opacity: 0.6,
+        placeholder: 'placeholder',
+        revert: 250,
+        tabSize: 25,
+        tolerance: 'pointer',
+        toleranceElement: '> div',
+        maxLevels: 0, // 0:Allow unlimited nested list
+        isTree: true,
+        expandOnHover: 700,
+        startCollapsed: false,
+        excludeRoot: true,
+        rootID: 'root'
+      })     
+    }
   })
 
   // Competency view: drag & drop function
@@ -30,9 +55,10 @@ $().ready(function () {
     handle: 'div',
     // Duplicate the element with events
     helper: function (e, li) {
-      this.copyHelper = li.clone(true).insertAfter(li)
-      $(this).data('copied', false)
-      return li.clone()
+        this.copyHelper = li.clone(true).insertAfter(li)
+        $(this).data('copied', false)
+        // Return the copied li with 'add' class
+        return li.addClass('add').clone()
     },
     items: 'li',
     opacity: 0.6,
@@ -41,15 +67,21 @@ $().ready(function () {
     tabSize: 25,
     tolerance: 'pointer',
     toleranceElement: '> div',
-    maxLevels: 1,
+    maxLevels: 1,   // Disable nested list
     isTree: true,
     expandOnHover: 700,
     startCollapsed: false,
     excludeRoot: true,
     rootID: 'root',
-    // axis: 'x',
-    // containment: 'parent',
-    connectWith: '#library-view ol.sortable'  // Enable drag & drop between the columns
+    // Enable drag & drop between the columns
+    connectWith: '#library-view ol.sortable',
+    // Run functions when drag & drop is finished
+    stop: function (e, li) {
+      // Delete the duplicated li in the competency view
+      $('#competency-view').find('.add').remove()
+      // Remove the flag('add' class) in the library view
+      $('#library-view').find('.add').removeClass('add')
+    }
   })
 
   // Set events on the buttons
