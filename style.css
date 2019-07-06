@@ -100,3 +100,8 @@ p,ol,ul,pre,form {
 .highlight-show {
 color: #f7e30c;
 }
+
+#rating-filter {
+	background:#2a4b7c;
+	color: white;
+}

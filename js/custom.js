@@ -45,7 +45,7 @@ $().ready(function () {
         startCollapsed: false,
         excludeRoot: true,
         rootID: 'root'
-      })     
+      })
     }
   })
 
@@ -120,3 +120,25 @@ $().ready(function () {
     $(highlightItem).toggleClass('highlight-show')
   })
 })
+
+// Function to search through list and hide the items that don't have the characters that were inputted
+function filterNames(view) {
+  itemView = document.getElementById(view)
+  // Get value of input
+  let filterValue = itemView.getElementsByClassName('filterInput')[0].value.toUpperCase()
+  // Get all EO elements
+  itemTitle = itemView.getElementsByClassName('itemTitle')
+
+  // Loop through the EO elements
+  for (let i = 0; i < itemTitle.length; i++) {
+    // Get the EO title
+    const title = itemTitle[i].textContent.toUpperCase()
+    // If the EO title matched with the value of input, do nothing
+    if (title.indexOf(filterValue) > -1) {
+      itemTitle[i].parentNode.style.display = ''
+    // If the EO title didn't match with the value of input, hide the parent div
+    } else {
+      itemTitle[i].parentNode.style.display = 'none' 
+    }
+  }
+}
