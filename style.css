@@ -5,6 +5,11 @@ body {
 
 }
 
+h2 {
+	font-size: 15px;
+	margin: 0 0 0 10px;
+}
+
 .placeholder {
 	outline: 1px dashed #4183C4;
 }
@@ -55,8 +60,8 @@ li.mjs-nestedSortable-collapsed.mjs-nestedSortable-hovering div {
 	padding: 0;
 }
 
-.menuDiv {
-	background: #EBEBEB;
+.sortable .menuDiv {
+	background: #ffffff;
 }
 
 .menuEdit {
@@ -81,7 +86,7 @@ h1, h2, h3 {
 
 p,ol,ul,pre,form {
 	margin-top: 0;
-	margin-bottom: 1em;
+	margin-bottom: 0;
 }
 
 /* #competency-view li .disclose, #competency-view li .delete-menu, #library-view li .highlight { */
@@ -89,19 +94,120 @@ p,ol,ul,pre,form {
 	display: none;
 }
 
+.section-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 10px;
+	height: 50px;
+}
+
 #library-view {
-	margin-left: -40px;
+	padding: 0;
+	margin-right: 10px;
+	margin-left: -10px;
+	background-color: #e5e5e4;
+}
+
+.competency-tree {
+	padding: 0;
+	border: 3px solid #e5e5e4;
+	background-color: #ffffff;
+	min-height: 45px;
+}
+
+.competency-tree .menuDiv {
+	background-color: #ffffff;
+	margin: 0;
 }
 
 .glyphicon {
-	top: 3px;
+	padding: 0 5px;
 }
 
 .highlight-show {
-color: #f7e30c;
+color: #ffc906;
 }
 
 #rating-filter {
-	background:#2a4b7c;
-	color: white;
+	background: #e5e5e4;
+	border: none;
+	color: black;
+	width: 20px;
+	float: right;
+	margin-right: 10px;
+}
+
+.filterInput {
+	float: right;
+}
+
+#competency-view {
+	background-color: #e5e5e4;
+	padding: 0;
+}
+
+.competencies {
+	border: 3px solid #e5e5e4;
+	background-color: #ffffff;
+	padding: 0;
+	margin-bottom: none;
+}
+
+.competencies .competency {
+	border-bottom: 3px solid #e5e5e4;
+}
+
+.competencies .competency:last-child {
+	border: none;
+}
+
+.competency .div
+Div {
+	background: white;
+}
+
+.competencies .glyphicon-chevron-up {
+	float: right;
+}
+
+.glyphicon-option-vertical {
+	float: right;
+}
+
+.glyphicon-minus, .glyphicon-plus{
+	color: #e5e5e4;
+}
+
+.glyphicon-chevron-down, .glyphicon-chevron-up {
+	float: right;
+}
+
+.glyphicon-share-alt {
+	transform: rotate(270deg);
+	color: #e5e5e4;
+}
+
+#competency-view .glyphicon-share-alt {
+	display: none;
+}
+
+.performance {
+	display: flex;
+	text-align: center;
+}
+
+.learning-objectives p, .conditions p:first-child{
+	padding-bottom: 10px;
+	text-align: center;
+}
+
+.learning-objectives table tr,th, td {
+	padding: 3px 10px;
+	border: 1px solid #dddddd;
+	text-align: center;
+}
+
+.conditions {
+	padding
 }
