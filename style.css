@@ -5,18 +5,13 @@ body {
 
 }
 
-.placeholder {
-	outline: 1px dashed #4183C4;
+h1, h2, h3 {
+	text-align: center;
 }
 
-.mjs-nestedSortable-error {
-	background: #fbe3e4;
-	border-color: transparent;
-}
-
-#tree {
-	width: 550px;
-	margin: 0;
+p,ol,ul,pre,form {
+	margin-top: 0;
+	margin-bottom: 1em;
 }
 
 ol.sortable,ol.sortable ol {
@@ -32,16 +27,16 @@ ol.sortable,ol.sortable ol {
 	padding: 10px;
 }
 
-li.mjs-nestedSortable-collapsed.mjs-nestedSortable-hovering div {
-	border-color: #999;
+#library-view {
+	margin-left: -40px;
 }
 
-.disclose, .expandEditor {
-	cursor: pointer;
-	width: 20px;
+#competency-view ol {
+	padding: 0;
 }
 
-.sortable li.mjs-nestedSortable-collapsed > ol {
+.sortable li.mjs-nestedSortable-collapsed > ol,
+#competency-view li .disclose, #competency-view li .delete-menu {
 	display: none;
 }
 
@@ -55,6 +50,32 @@ li.mjs-nestedSortable-collapsed.mjs-nestedSortable-hovering div {
 	padding: 0;
 }
 
+/* li.mjs-nestedSortable-collapsed.mjs-nestedSortable-hovering div {
+	border-color: #999;
+} */
+
+/* Border colour when an element is dragged */
+.placeholder {
+	outline: 1px dashed #4183C4;
+}
+
+/* Background colour when dragging is banned */
+.mjs-nestedSortable-error {
+	background: #fbe3e4;
+	border-color: transparent;
+}
+
+/* #tree {
+	width: 550px;
+	margin: 0;
+} */
+
+.disclose, .expandEditor {
+	cursor: pointer;
+	width: 20px;
+}
+
+/* List items */
 .menuDiv {
 	background: #EBEBEB;
 }
@@ -69,12 +90,14 @@ li.mjs-nestedSortable-collapsed.mjs-nestedSortable-hovering div {
 	cursor: pointer;
 }
 
+/* Delete/star icons */
 .delete-menu, .highlight {
 	float: right;
 	cursor: pointer;
 	margin-left: 10px;
 }
 
+<<<<<<< HEAD
 h1, h2, h3 {
 	text-align: center;
 }
@@ -94,14 +117,18 @@ p,ol,ul,pre,form {
 
 }
 
+=======
+/* Bootstrap icons */
+>>>>>>> master
 .glyphicon {
 	top: 3px;
 }
 
 .highlight-show {
-background: #f7e30c;
+color: #ffc000;
 }
 
+<<<<<<< HEAD
 
 	/* #rating-filter {
 	height: 50px;
@@ -126,3 +153,11 @@ background: #f7e30c;
 
   
    
+=======
+/* Sort field */
+#sort-menu {
+	background:#2a4b7c;
+	color: white;
+}
+
+>>>>>>> master
