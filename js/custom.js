@@ -1,6 +1,11 @@
+// 5 colors;
+// one by one;
+// maxium 5 items highlight
+// disable hightlight double click
+
 $().ready(function () {
   // Library view: drag & drop function
-  $('#library-view ol.sortable').on('click', function(event) {
+  $('#library-view ol.sortable').on('click', function (event) {
     // If shift key is pressed => duplicate the element on drop
     if (event.shiftKey) {
       $(this).nestedSortable({
@@ -28,7 +33,7 @@ $().ready(function () {
       })
     // If shift key is not pressed => just move the element
     } else {
-       $(this).nestedSortable({
+      $(this).nestedSortable({
         forcePlaceholderSize: true,
         handle: 'div',
         helper: 'clone',
@@ -55,10 +60,10 @@ $().ready(function () {
     handle: 'div',
     // Duplicate the element with events
     helper: function (e, li) {
-        this.copyHelper = li.clone(true).insertAfter(li)
-        $(this).data('copied', false)
-        // Return the copied li with a flag ('copy' class)
-        return li.addClass('copy').clone()
+      this.copyHelper = li.clone(true).insertAfter(li)
+      $(this).data('copied', false)
+      // Return the copied li with a flag ('copy' class)
+      return li.addClass('copy').clone()
     },
     items: 'li',
     opacity: 0.6,
@@ -67,7 +72,7 @@ $().ready(function () {
     tabSize: 25,
     tolerance: 'pointer',
     toleranceElement: '> div',
-    maxLevels: 1,   // Disable nested list
+    maxLevels: 1, // Disable nested list
     isTree: true,
     expandOnHover: 700,
     startCollapsed: false,
@@ -115,60 +120,83 @@ $().ready(function () {
     $(this).parent().parent().remove()
   })
 
-  // Highlight the element when a star icon is clicked
-  $('.highlight').click(function () {
-    // Get the first class name (guid) of the parent li
-    var highlightClass = $(this).parent().parent().attr('class').split(' ')[0]
-    // Select all star icons under the same guid
-    var highlightItem = '.' + highlightClass + ' > .menuDiv .glyphicon-star'
-    $(highlightItem).toggleClass('highlight-show')
+  // $('.highlight').click(function () {
+  //   // create color array
+  //   var colors = ['#f7e30c', '#ff0000', '#00ff00', '#0000ff']
+  //   // random color array
+  //   var randColor = colors[Math.floor(Math.random() * colors.length)]
+  //   // Get the second class name of the parent li
+  //   var highlightClass = $(this).parent().parent().attr('class').split(' ')[0]
+  //   var highlightItem = '.' + highlightClass + ' > .menuDiv .glyphicon-star'
+  //   // add random color class
+  //   $(highlightItem).css('color', randColor)
+  // })
+
+  $(document).ready(function () {
+    var colors = ['#f7e30c', '#ff0000', '#00ff00', '#0000ff']
+    var index = 0
+    clicked = true
+
+    $('.highlight').click(function () {
+      var highlightClass = $(this).parent().parent().attr('class').split(' ')[0]
+      var highlightItem = '.' + highlightClass + ' > .menuDiv .glyphicon-star'
+      if (index >= colors.length) { index = 0 } // reset back to first color
+      if (clicked) {
+        $(highlightItem).css('color', colors[index])
+        index++
+        clicked = false
+      } else {
+        $(highlightItem).css('color', 'black')
+        clicked = true
+      }
+    })
   })
 
   // Sort EOs by course name/course code
-  $('#sort-menu').change(function() {
-    let sortFlg   // 'name' or 'code'
-    let sortTitle = []  // EO titles to sort
+  $('#sort-menu').change(function () {
+    let sortFlg // 'name' or 'code'
+    let sortTitle = [] // EO titles to sort
     const currentTitle = [] // Current EO titles (i.e. GIS4212 - PM Methods)
     const sortedElement = []
     const sortView = document.getElementById('competency-view')
-    const currentOl = sortView.getElementsByClassName('ol-level')  // 'ol' elements
+    const currentOl = sortView.getElementsByClassName('ol-level') // 'ol' elements
     const currentLis = sortView.getElementsByClassName('list-item') // 'li' elements
-    const sortTarget = sortView.getElementsByClassName('itemTitle')  // 'span' elements with 'itemTitle' class
+    const sortTarget = sortView.getElementsByClassName('itemTitle') // 'span' elements with 'itemTitle' class
 
     // Function to sort elements of sortTitle array
     function sortItems (sortFlg) {
-      sortTitle.sort(function(a, b) {
+      sortTitle.sort(function (a, b) {
         // If sort targets are course names
-        if (sortFlg === "name") {
-          a = a.toString().toLowerCase();
-          b = b.toString().toLowerCase();
+        if (sortFlg === 'name') {
+          a = a.toString().toLowerCase()
+          b = b.toString().toLowerCase()
         }
         // Sort elements of sortTitle array
         if (a < b) {
-          return -1;
-        } else if (a > b){
-          return 1;
+          return -1
+        } else if (a > b) {
+          return 1
         }
-        return 0; 
-      })        
+        return 0
+      })
     }
 
     // Get a value of sort menu: course code/course name
     let value = $(this).val()
-    if (value === "Course code") {
-      sortFlg = "code"
-    } else if (value === "Course name") {
-      sortFlg = "name"
+    if (value === 'Course code') {
+      sortFlg = 'code'
+    } else if (value === 'Course name') {
+      sortFlg = 'name'
     }
 
     // Set array to sort
     for (let i = 0; i < sortTarget.length; i++) {
       // If sort by course name
-      if (sortFlg === "name") {
+      if (sortFlg === 'name') {
         // Divide the EO into a code and title
         let tmp = sortTarget[i].textContent.split('- ')
         // If EO doesn't have a code
-        if (typeof(tmp[1]) == "undefined") {  
+        if (typeof (tmp[1]) === 'undefined') {
           currentTitle.push(tmp[0])
         } else {
           currentTitle.push(tmp[1])
@@ -180,7 +208,7 @@ $().ready(function () {
     }
 
     // Duplicate currentTitle array
-    sortTitle = currentTitle.slice();
+    sortTitle = currentTitle.slice()
 
     // Sort EOs in sortTitle array
     sortItems(sortFlg)
@@ -205,7 +233,7 @@ $().ready(function () {
 })
 
 // Function to search through list and hide the items that don't have the characters that were inputted
-function filterNames(view) {
+function filterNames (view) {
   const filterView = document.getElementById(view)
   // Get value of input
   const filterValue = filterView.getElementsByClassName('filterInput')[0].value.toUpperCase()
@@ -221,7 +249,7 @@ function filterNames(view) {
       filterTitle[i].parentNode.style.display = ''
     // If the EO title didn't match with the value of input, hide the parent div
     } else {
-      filterTitle[i].parentNode.style.display = 'none' 
+      filterTitle[i].parentNode.style.display = 'none'
     }
   }
 }
