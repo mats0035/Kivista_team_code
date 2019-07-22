@@ -404,9 +404,8 @@ $().ready(function() {
 
   /**
   * Highlight star icons and scrollbar
-  * Note: Highlight of the scrollbar uses mark.js
+  * Note: scrollbar function uses mark.js
   */
-  // Setting of highlight function
   const colors = ['#f9bc00', '#e81515', '#38bb56', '#1f22cc', '#d000ff']
   let colorIndex = 0
   let clicked = []
@@ -415,24 +414,24 @@ $().ready(function() {
   const container = view.querySelector('.ol-level')
   const containerY = container.offsetTop      // Distance from 'ol'
   const containerH = container.scrollHeight   // Hight of 'ol'
-
-  // Set a scrollbar on the competency view
   const customStyle = document.createElement('style', {class: 'scroll-style'});
   const styleClass = 'scroll-style'
+
+  // Add a scrollbar on the competency view
   container.appendChild(customStyle);
 
-  // Create array of guid
+  // Create array of guids
   for (let i = 0; i < lis.length; i++) {
     let guid = lis[i].getAttribute('class').split(' ')[0] // All guids
     clicked.push({guid: guid, clicked: false})
   }
 
-  // Highlight a star icon and show a highlighted line on the scrollbar when a star is clicked
+  // When a star icon is clicked
   $('.highlight').click(function() {
     // Get the clicked star icon
     const highlightClass = $(this).parent().parent().attr('class').split(' ')[0]
     const highlightItem = '.' + highlightClass + ' > .menuDiv .glyphicon-star'
-    // Get the number of guid
+    // Get the number of guid (i.e. guid_3 -> 3)
     const guidIndex = highlightClass.replace(/guid_/g, '') - 1
     // Get EO title
     const highlightTitle = '#competency-view .' + highlightClass + ' .itemTitle'
@@ -442,20 +441,20 @@ $().ready(function() {
     if (colorIndex >= colors.length) {
       colorIndex = 0
     }
-    // Set highlights on the scrollbar
+    // Set ticks on the scrollbar
     let renderScrollMarker = ($parent, posArr) => {
       let _posArr = posArr.map(i => {
         // Return percentage of transparent/highlight colours on the scrollbar
         return `transparent ${i}, currentColor ${i}, currentColor calc(${i} + 4px), transparent calc(${i} + 4px)`;
       })
-      // Add highlight line on the scrollbar
+      // Add ticks on the scrollbar
       customStyle.setAttribute('class', styleClass)
       customStyle.innerHTML = `ol::-webkit-scrollbar-track {
         background: linear-gradient(${_posArr.join()});
       }`
     }
 
-    // Calculate the position of highlight
+    // Calculate the position of a tick
     let calcEleRelativePos = $ele => {
       return ($ele.offsetTop - containerY) / containerH
     }
@@ -468,10 +467,10 @@ $().ready(function() {
         let marks = document.querySelectorAll(`.mark`);
         // Create a new array with the result of a function on every element in the calling array
         let allY = [].map.call(marks, (mark) => {
-          // Get the position of the highlight with two decimals
+          // Get the position of the tick with two decimals
           return (calcEleRelativePos(mark) * 100).toFixed(2) + '%'
         })
-        // Add a highlighted line on the scrollbar
+        // Add a tick on the scrollbar
         renderScrollMarker(container, allY);
       }
     }
