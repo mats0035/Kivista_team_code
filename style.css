@@ -40,84 +40,6 @@ ol.sortable,ol.sortable ol {
 	/* margin: 5px; */
 	padding: 15px;
 }
-
-li.mjs-nestedSortable-collapsed.mjs-nestedSortable-hovering div {
-	border-color: #999;
-}
-
-.disclose, .expandEditor {
-	cursor: pointer;
-	width: 20px;
-}
-
-.sortable li.mjs-nestedSortable-collapsed > ol {
-	display: none;
-}
-
-.sortable li.mjs-nestedSortable-branch > div > .disclose {
-	display: inline-block;
-}
-
-.sortable span.ui-icon {
-	display: inline-block;
-	margin: 0;
-	padding: 0;
-}
-
-.menuEdit {
-	background: #FFF;
-	margin-bottom: 0 !important;
-}
-
-.itemTitle {
-	vertical-align: middle;
-	cursor: pointer;
-}
-
-/* .delete-menu, .highlight {
-	float: right;
-	cursor: pointer;
-	margin-left: 10px;
-} */
-.highlight {
-	float: right;
-	cursor: pointer;
-	margin-left: 10px;
-}
-.delete-menu {
-  cursor: pointer !important;
-}
-
-.glyphicon-option-vertical {
-  cursor: pointer;
-}
-.show-popup {
-  display: flex !important;
-}
-
-.hide {
-  display: none;
-}
-.dot-popup {
-  position: absolute;
-	right: 0;
-  top: 0;
-  background:#fff;
-  box-shadow: 0 8px 6px -6px #999;
-  border: 1px solid #999;
-  padding: 20px;
-  z-index: 100;
-  cursor: pointer !important;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.cancel {
-  display: block;
-  margin: auto 5px;
-}
-
 #library-view {
 	padding: 0;
 	margin-right: 10px;
@@ -158,6 +80,79 @@ li.mjs-nestedSortable-collapsed.mjs-nestedSortable-hovering div {
 
 .competency-tree ol:nth-child(n) {
   background-color: #eee;
+}
+
+li.mjs-nestedSortable-collapsed.mjs-nestedSortable-hovering div {
+	border-color: #999;
+}
+
+.disclose, .expandEditor {
+	cursor: pointer;
+	width: 20px;
+}
+
+.sortable li.mjs-nestedSortable-collapsed > ol {
+	display: none;
+}
+
+.sortable li.mjs-nestedSortable-branch > div > .disclose {
+	display: inline-block;
+}
+
+.sortable span.ui-icon {
+	display: inline-block;
+	margin: 0;
+	padding: 0;
+}
+
+.menuEdit {
+	background: #FFF;
+	margin-bottom: 0 !important;
+}
+
+.itemTitle {
+	vertical-align: middle;
+	cursor: pointer;
+}
+
+.highlight {
+	float: right;
+	cursor: pointer;
+	margin-left: 10px;
+}
+
+.delete-menu {
+  cursor: pointer !important;
+}
+
+.glyphicon-option-vertical {
+  cursor: pointer;
+}
+.show-popup {
+  display: flex !important;
+}
+
+.hide {
+  display: none;
+}
+.dot-popup {
+  position: absolute;
+	right: 0;
+  top: 0;
+  background:#fff;
+  box-shadow: 0 8px 6px -6px #999;
+  border: 1px solid #999;
+  padding: 20px;
+  z-index: 100;
+  cursor: pointer !important;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.cancel {
+  display: block;
+  margin: auto 5px;
 }
 
 .glyphicon {
@@ -282,6 +277,8 @@ li.mjs-nestedSortable-collapsed.mjs-nestedSortable-hovering div {
 ol::-webkit-scrollbar {
 	width: 10px;
 	border: 1px solid #333;
+	background: transparent;
+	z-index: 100;
 }
 
 /* Draggable scrollbar  */
@@ -292,7 +289,7 @@ ol::-webkit-scrollbar {
 
 /* Highlighted line on the scrollbar */
 #competency-view  ol::-webkit-scrollbar-track {
-	color: #bff;
+	color: #2a4b7c;
 	background-color: rgba(0,0,0, .1);
 }
 
@@ -300,10 +297,4 @@ ol::-webkit-scrollbar {
 mark {
 	background-color: transparent !important;
 	padding: 0 !important;
-}
-
-@media (min-width: 1200px) {
-	/* .container {
-    width: 95%;
-	} */
 }

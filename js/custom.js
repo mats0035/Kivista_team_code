@@ -33,10 +33,9 @@ $().ready(function() {
   const titleArray = ["GIS4207 - Create Dynamic Web Pages", "GIS4204 - Electromagnetic Spectrum", "GIS4110 - Extracting and Combining Features", "GIS4111 - Feature Generalization", "GIS4111 - Geographic Reference Systems", "GIS4112 - Historic Cartography", "GIS4110 - Human Geography", "GIS4112 - Information Graphic Principles", "GIS4204 - Knowledge of Physics and Sensors", "Map Design Principles", "GIS4110 - Physical Geography", "GIS4111 - Projection Transformation", "GIS4107 - Simple Programs", "GIS4111 - Static Web Pages with Design", "GIS4111, GIS4113 - Strategic Purpose", "GIS4112 - Summary Statistics (non-spatial)", "GIS4111 - Tech Writing", "GIS4112 - Various Map Types", "Visual Variables", "Web Mapping Applications HTML/CSS/JS API", "* Leading Projects"]
   const statementArray = ["Create dynamic web pages. Create web pages that display content from a database", "Describe the Electromagnetic Spectrum", "Perform Extracting and Combining Features", "Feature Generalization", "Describe and apply various horizontal and vertical geographic reference systems", "Outline the evolution of cartography through history", "Awareness of Human Geography Methods", "Organize information for maximum clarity and effectiveness using graphic principles", "Demonstrate theoretical knowledge of physics, sensors and imagery", "Describe and effectively apply Map Design principles in the creation of thematic map products", "Awareness of Physical Geography Methods", "Describe and apply coordinate conversion and projection transformation methods", "Create simple programs using structured programming concepts and techniques", "Create Static Web Pages with HTML/CSS Design", "Determine The Strategic Purpose", "Summarize non-spatial data using appropriate statistical techniques", "Experience with technical writing for documentation of processes, training", "Describe and understand the uses of various map types", "Describe and apply visual variables appropriately with data measurement scales and spatial data types", "Create Web Mapping Applications using HTML/CSS and JavaScript, and the ESRI JS API","Experience with participating in, and leading, projects"]
   const htmlArray = []
-  var guidNum
   for (let i = 0; i < titleArray.length; i++) {
-    guidNum = i + 1
-    var guidHtml = 'guid_' + guidNum
+    let guidNum = i + 1
+    let guidHtml = 'guid_' + guidNum
     htmlArray.push(`</div>
     <li style="display: list-item;" class="${guidHtml} competency list-item mjs-nestedSortable-leaf">
       <div class="menuDiv">
@@ -141,7 +140,7 @@ $().ready(function() {
     countEOs.push({guid: guid, num: 0})
   }
 
-  //Initialize the EO counter: Count up the default EO numbers in the tree
+  // Initialize the EO counter: Count up the default EOs in the tree
   const defaultGuid = []
   defaultGuid.push($('#library-view').find('.list-item').attr('class').split(" ")[0])
   updateEoCounter('drag', defaultGuid)
@@ -186,7 +185,7 @@ $().ready(function() {
           updateEoCounter('drag', guids)
         }
       })
-      // If shift key is not pressed => just move the element
+    // If shift key is not pressed => just move the element
     } else {
       $(this).nestedSortable({
         forcePlaceholderSize: true,
@@ -236,7 +235,7 @@ $().ready(function() {
     rootID: 'root',
     // Enable drag & drop between the columns
     connectWith: '#library-view ol.sortable',
-    // Run functions when drag & drop is finished
+    // Run a function when drag & drop is finished
     stop: function(e, li) {
       // Delete the duplicated li in the competency view
       $('#competency-view').find('.copy').remove()
@@ -312,24 +311,22 @@ $().ready(function() {
   * -Sort by course code
   * -Sort by the number of EOs on the left side
   */
-  // Sort EOs by course name/course code
-    // Show/hide options
+  // Show/hide options
   $('#competency-view #sort-menu').click(function() {
     $('#sort-options').toggleClass('hide').toggleClass('show-popup')
   })
-
+  // When Course name/Course code/Counter is clicked
   $('.sort-option').click(function() {
-    console.log('clicked')
     let sortFlg // name/code/counter
     let sortTitle = [] // EO titles to sort
     const currentTitle = [] // Current EO titles (i.e. GIS4212 - PM Methods)
-    const sortedElement = []
+    const sortedElement = []  // Li elements after sort
     const sortView = document.getElementById('competency-view')
     const currentOl = sortView.getElementsByClassName('ol-level') // 'ol' elements
     const currentLis = sortView.getElementsByClassName('list-item') // 'li' elements
     const sortTarget = sortView.getElementsByClassName('itemTitle') // 'span' elements with 'itemTitle' class
     const sortCounter = sortView.getElementsByClassName('counter')  // number of the EO in the tree
-    // const sortTarget = ""
+
     // Function to sort elements of sortTitle array
     function sortItems(sortFlg) {
       sortTitle.sort(function(a, b) {
@@ -348,7 +345,7 @@ $().ready(function() {
       })
     }
 
-    // Get a value of sort menu: course code/course name/counter
+    // Get a value of sort menu
     let value = $(this).attr('value')
     if (value === 'Course code') {
       sortFlg = 'code'
@@ -358,7 +355,7 @@ $().ready(function() {
       sortFlg = 'counter'
     }
 
-    // Set array to sort
+    // Set an array to sort
     for (let i = 0; i < sortTarget.length; i++) {
       // If sort by course name
       if (sortFlg === 'name') {
@@ -410,11 +407,19 @@ $().ready(function() {
   * Note: Highlight of the scrollbar uses mark.js
   */
   // Setting of highlight function
-  const colors = ['#f7e30c', '#ff0000', '#00ff00', '#0000ff']
+  const colors = ['#f9bc00', '#e81515', '#38bb56', '#1f22cc', '#d000ff']
   let colorIndex = 0
   let clicked = []
   const view = document.getElementById('competency-view')
   const lis = view.getElementsByClassName('list-item')
+  const container = view.querySelector('.ol-level')
+  const containerY = container.offsetTop      // Distance from 'ol'
+  const containerH = container.scrollHeight   // Hight of 'ol'
+
+  // Set a scrollbar on the competency view
+  const customStyle = document.createElement('style', {class: 'scroll-style'});
+  const styleClass = 'scroll-style'
+  container.appendChild(customStyle);
 
   // Create array of guid
   for (let i = 0; i < lis.length; i++) {
@@ -425,55 +430,44 @@ $().ready(function() {
   // Highlight a star icon and show a highlighted line on the scrollbar when a star is clicked
   $('.highlight').click(function() {
     // Get the clicked star icon
-    var highlightClass = $(this).parent().parent().attr('class').split(' ')[0]
-    var highlightItem = '.' + highlightClass + ' > .menuDiv .glyphicon-star'
+    const highlightClass = $(this).parent().parent().attr('class').split(' ')[0]
+    const highlightItem = '.' + highlightClass + ' > .menuDiv .glyphicon-star'
     // Get the number of guid
-    var guidIndex = highlightClass.replace(/guid_/g, '') - 1
+    const guidIndex = highlightClass.replace(/guid_/g, '') - 1
     // Get EO title
-    var highlightTitle = '#competency-view .' + highlightClass + ' .itemTitle'
-    var highlightText = $(highlightTitle).text()
-    // Set a scrollbar on the competency view
-    var view = document.getElementById('competency-view')
-    var container = view.querySelector('.ol-level')
-    var containerY = container.offsetTop      // Distance from 'ol'
-    var containerH = container.scrollHeight   // Hight of 'ol'
-    var customStyle = document.createElement('style');
-    // var customStyle = container.querySelector('.scroll-style')
-    var styleClass = highlightClass + '_scroll-style'
+    const highlightTitle = '#competency-view .' + highlightClass + ' .itemTitle'
+    const highlightText = $(highlightTitle).text()  // EO title including the code
 
     // Reset the index of colour array if it reached the max number
     if (colorIndex >= colors.length) {
       colorIndex = 0
     }
     // Set highlights on the scrollbar
-    var renderScrollMarker = ($parent, posArr) => {
-      var _posArr = posArr.map(i => {
+    let renderScrollMarker = ($parent, posArr) => {
+      let _posArr = posArr.map(i => {
         // Return percentage of transparent/highlight colours on the scrollbar
-        return `transparent ${i}, currentColor ${i}, currentColor calc(${i} + 3px), transparent calc(${i} + 3px)`;
+        return `transparent ${i}, currentColor ${i}, currentColor calc(${i} + 4px), transparent calc(${i} + 4px)`;
       })
       // Add highlight line on the scrollbar
       customStyle.setAttribute('class', styleClass)
       customStyle.innerHTML = `ol::-webkit-scrollbar-track {
         background: linear-gradient(${_posArr.join()});
       }`
-      // customStyle.innerHTML = `ol::-webkit-scrollbar-track {
-      //   color: ${colors[colorIndex]}; background: linear-gradient(${_posArr.join()});
-      // }`
     }
 
     // Calculate the position of highlight
-    var calcEleRelativePos = $ele => {
+    let calcEleRelativePos = $ele => {
       return ($ele.offsetTop - containerY) / containerH
     }
 
     // Set options for mark function
-    var markOpt = {
+    let markOpt = {
       className: 'mark',          // Add a class name
       separateWordSearch: false,  // Treat words sparated by space as one word
       done: function () {         // Callback function called after all marks are done
-        var marks = document.querySelectorAll(`.mark`);
+        let marks = document.querySelectorAll(`.mark`);
         // Create a new array with the result of a function on every element in the calling array
-        var allY = [].map.call(marks, (mark) => {
+        let allY = [].map.call(marks, (mark) => {
           // Get the position of the highlight with two decimals
           return (calcEleRelativePos(mark) * 100).toFixed(2) + '%'
         })
@@ -481,28 +475,30 @@ $().ready(function() {
         renderScrollMarker(container, allY);
       }
     }
-    var instance = new Mark(container);
+    let instance = new Mark(container);
 
     // If the clicked star is already highlighted
     if (clicked[guidIndex].clicked) {
       // Disable the highlight of the star
       $(highlightItem).css('color', 'black')
-
-      // Remove the highlight on the scrollbar
-      instance.unmark(markOpt)
-      var removeStyle = '.' + styleClass
-      $(removeStyle).remove()
-console.log(clicked)
       clicked[guidIndex] = {guid: highlightClass, clicked: false}
+      // Remove all ticks from the scrollbar
+      instance.unmark(markOpt)
+     // Remark the rest of the highlighted elements
+      for (let i = 0; i < clicked.length; i++) {
+        if (clicked[i].clicked) {
+          // Get EO title
+          let highlightTitle = '#competency-view .' + clicked[i].guid + ' .itemTitle'
+          let highlightText = $(highlightTitle).text()
+          // Add a tick next to the highlighted EO
+          instance.mark(highlightText, markOpt);
+        }
+      }
     // If the clicked star is not highlighted
     } else {
       // Add highlight to the star
       $(highlightItem).css('color', colors[colorIndex])
-
-      // Add a style tag
-      container.appendChild(customStyle);
-console.log(clicked)
-      // Highlight the scrollbar
+      // Add a tick next to the clicked EO
       instance.mark(highlightText, markOpt);
       colorIndex++
       clicked[guidIndex] = {guid: highlightClass, clicked: true}
