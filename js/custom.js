@@ -1,5 +1,158 @@
-$().ready(function () {
-  // Library view: drag & drop function
+/**
+* Function to search through list and hide the items that don't have the characters that were inputted 
+*/
+function filterNames(view) {
+  const filterView = document.getElementById(view)
+  // Get value of input
+  const filterValue = filterView
+    .getElementsByClassName('filterInput')[0]
+    .value.toUpperCase()
+  // Get all EO elements
+  filterTitle = filterView.getElementsByClassName('itemTitle')
+
+  // Loop through the EO elements
+  for (let i = 0; i < filterTitle.length; i++) {
+    // Get the EO title
+    const title = filterTitle[i].textContent.toUpperCase()
+    // If the EO title matched with the value of input, do nothing
+    if (title.indexOf(filterValue) > -1) {
+      filterTitle[i].parentNode.style.display = ''
+      // If the EO title didn't match with the value of input, hide the parent div
+    } else {
+      filterTitle[i].parentNode.style.display = 'none'
+    }
+  }
+}
+$().ready(function() {
+  /**
+  * Make EO list on the right side
+  * -Set HTML of EOs
+  * -Insert the HTML codes inside the 'ol' on the right side
+  */
+  // Initialize the competency view
+  const titleArray = ["GIS4207 - Create Dynamic Web Pages", "GIS4204 - Electromagnetic Spectrum", "GIS4110 - Extracting and Combining Features", "GIS4111 - Feature Generalization", "GIS4111 - Geographic Reference Systems", "GIS4112 - Historic Cartography", "GIS4110 - Human Geography", "GIS4112 - Information Graphic Principles", "GIS4204 - Knowledge of Physics and Sensors", "Map Design Principles", "GIS4110 - Physical Geography", "GIS4111 - Projection Transformation", "GIS4107 - Simple Programs", "GIS4111 - Static Web Pages with Design", "GIS4111, GIS4113 - Strategic Purpose", "GIS4112 - Summary Statistics (non-spatial)", "GIS4111 - Tech Writing", "GIS4112 - Various Map Types", "Visual Variables", "Web Mapping Applications HTML/CSS/JS API", "* Leading Projects"]
+  const statementArray = ["Create dynamic web pages. Create web pages that display content from a database", "Describe the Electromagnetic Spectrum", "Perform Extracting and Combining Features", "Feature Generalization", "Describe and apply various horizontal and vertical geographic reference systems", "Outline the evolution of cartography through history", "Awareness of Human Geography Methods", "Organize information for maximum clarity and effectiveness using graphic principles", "Demonstrate theoretical knowledge of physics, sensors and imagery", "Describe and effectively apply Map Design principles in the creation of thematic map products", "Awareness of Physical Geography Methods", "Describe and apply coordinate conversion and projection transformation methods", "Create simple programs using structured programming concepts and techniques", "Create Static Web Pages with HTML/CSS Design", "Determine The Strategic Purpose", "Summarize non-spatial data using appropriate statistical techniques", "Experience with technical writing for documentation of processes, training", "Describe and understand the uses of various map types", "Describe and apply visual variables appropriately with data measurement scales and spatial data types", "Create Web Mapping Applications using HTML/CSS and JavaScript, and the ESRI JS API","Experience with participating in, and leading, projects"]
+  const htmlArray = []
+  var guidNum
+  for (let i = 0; i < titleArray.length; i++) {
+    guidNum = i + 1
+    var guidHtml = 'guid_' + guidNum
+    htmlArray.push(`</div>
+    <li style="display: list-item;" class="${guidHtml} competency list-item mjs-nestedSortable-leaf">
+      <div class="menuDiv">
+        <span title="Click to show/hide children" class="disclose glyphicon glyphicon-minus"></span>
+        <span class="glyphicon glyphicon-share-alt"></span>
+        <span class="itemTitle">${titleArray[i]}</span>
+        <span title="Click for options." class="dot-menu glyphicon glyphicon-option-vertical"><span class="counter">0</span></span>
+        <span title="Click to highlight item." class="highlight glyphicon glyphicon-star"></span>
+        <div class="dot-popup hide">
+          <div class="delete-menu">Delete<span title="Click to delete item." class="glyphicon glyphicon-remove"></span>
+          </div>
+          <button class="cancel">Cancel</button>
+        </div>
+        <span title="Click to show/hide item editor" class="expandEditor glyphicon glyphicon-chevron-down"></span>
+
+        <div class="menuEdit hidden">
+          <p>${statementArray[i]}</p>
+
+          <!-- Performance Standard/Statement information for EO -->
+          <div class="performance">
+            <div>
+              <p><b>Performance Statement</b></p>
+              <p>${statementArray[i]}</p>
+            </div>
+          </div>
+
+          <!-- Learning Objectives table for EO -->
+          <div class="learning-objectives">
+            <p><b>Learning Objective</b></p>
+            <table>
+              <tr>
+                <th>Serial</th>
+                <th>Learning Objective</th>
+                <th>Teaching Topics</th>
+                <th colspan="3">Method Timing</th>
+                <th>References/Remarks</th>
+                <th>Supported Tasks</th>
+              </tr>
+              <tr>
+                <td colspan="3"></td>
+                <th>L</th>
+                <th>D</th>
+                <th>P</th>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td colspan="3"></td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <th>0</th>
+                <td></td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+    </li>`)
+  }
+
+  //Add HTML in the competency view
+  const sortView = document.getElementById('competency-view')
+  const parent = sortView.getElementsByClassName('competencies') // 'ol' elements
+  parent[0].innerHTML = htmlArray.join('')
+
+  /** 
+  * Function to update the EO counter
+  */
+  function updateEoCounter (action, guids) {
+    for (let i=0; i < guids.length;i++) {
+      let guidInCompetency = '#competency-view .' + guids[i]
+      let guidInTree = '#library-view .' + guids[i]
+      let countIndex = guids[i].replace(/guid_/g, '') - 1
+
+      // If dragged from the right side
+      if (action === 'drag') {
+        eoNum = $(guidInTree).length
+      // If deleted in the tree
+      } else if (action === 'delete') {
+        eoNum = countEOs[countIndex].num - 1
+      }
+      countEOs[countIndex].num = eoNum
+
+      // Update the number of EO
+      let counter = guidInCompetency + ' .counter'
+      $(counter).html(`${countEOs[countIndex].num}`)
+      // Gray out the EO
+      if (eoNum > 0) {
+        $(guidInCompetency).css('background-color', '#eee')
+      } else {
+        $(guidInCompetency).css('background-color', '#fff')
+      }
+    }
+  }
+
+  // Create an array of guid
+  const countEOs = []
+  const guids = []
+  for (let i = 1; i <= titleArray.length; i++) {
+    let guid = 'guid_' + i
+    countEOs.push({guid: guid, num: 0})
+  }
+
+  //Initialize the EO counter: Count up the default EO numbers in the tree
+  const defaultGuid = []
+  defaultGuid.push($('#library-view').find('.list-item').attr('class').split(" ")[0])
+  updateEoCounter('drag', defaultGuid)
+
+  /**
+  * Add onclick event of drag and drop function
+  * -Left side: Drag & drop EOs to chanage the order of EOs in the list. Allows making unlimited nest in the list.
+  * -Right side: Drag & drop EOs to chanage the order of EOs in the list. Duplicate an EO on drag & drop to the left side. 
+  * Note: Drag & Drop function uses NestedSortable.js  
+  */
+  // Library view: drag & drop function 
   $('#library-view ol.sortable').on('click', function(event) {
     // If shift key is pressed => duplicate the element on drop
     if (event.shiftKey) {
@@ -7,8 +160,10 @@ $().ready(function () {
         forcePlaceholderSize: true,
         handle: 'div',
         // Duplicate the element with events
-        helper: function (e, li) {
+        helper: function(e, li) {
           this.copyHelper = li.clone(true).insertAfter(li)
+          // Get guid
+          guids[0] = $(li).attr('class').split(" ")[0]
           $(this).data('copied', false)
           return li.clone()
         },
@@ -24,11 +179,16 @@ $().ready(function () {
         expandOnHover: 700,
         startCollapsed: false,
         excludeRoot: true,
-        rootID: 'root'
+        rootID: 'root',
+        // Run functions when drag & drop is finished
+        stop: function(e, li) {
+          // Update the number of the dragged EO
+          updateEoCounter('drag', guids)
+        }
       })
-    // If shift key is not pressed => just move the element
+      // If shift key is not pressed => just move the element
     } else {
-       $(this).nestedSortable({
+      $(this).nestedSortable({
         forcePlaceholderSize: true,
         handle: 'div',
         helper: 'clone',
@@ -54,11 +214,12 @@ $().ready(function () {
     forcePlaceholderSize: true,
     handle: 'div',
     // Duplicate the element with events
-    helper: function (e, li) {
-        this.copyHelper = li.clone(true).insertAfter(li)
-        $(this).data('copied', false)
-        // Return the copied li with a flag ('copy' class)
-        return li.addClass('copy').clone()
+    helper: function(e, li) {
+      this.copyHelper = li.clone(true).insertAfter(li)
+      guids[0] = $(li).attr('class').split(" ")[0]
+      $(this).data('copied', false)
+      // Return the copied li with a flag ('copy' class)
+      return li.addClass('copy').clone()
     },
     items: 'li',
     opacity: 0.6,
@@ -67,7 +228,7 @@ $().ready(function () {
     tabSize: 25,
     tolerance: 'pointer',
     toleranceElement: '> div',
-    maxLevels: 1,   // Disable nested list
+    maxLevels: 1, // Disable nested list
     isTree: true,
     expandOnHover: 700,
     startCollapsed: false,
@@ -76,111 +237,152 @@ $().ready(function () {
     // Enable drag & drop between the columns
     connectWith: '#library-view ol.sortable',
     // Run functions when drag & drop is finished
-    stop: function (e, li) {
+    stop: function(e, li) {
       // Delete the duplicated li in the competency view
       $('#competency-view').find('.copy').remove()
       // Remove the flag('copy' class) in the library view
       $('#library-view').find('.copy').removeClass('copy')
+      // Update the number of the dragged EO
+      updateEoCounter('drag', guids)
     }
   })
 
-  // Trigger dtag & drop functions
+  // Trigger drag & drop functions
   $('#library-view ol.sortable').click()
 
-  // Set events on the buttons
-  $('.expandEditor').attr('title', 'Click to show/hide item editor')
-  $('.disclose').attr('title', 'Click to show/hide children')
-  $('.delete-menu').attr('title', 'Click to delete item.')
-
+  /**
+  * Add events on icons
+  * -Show/hide child elements: minus icon
+  * -Show/hide description: down arrow icon
+  * -Show options: delete, copy: three dot icon 
+  */
   // SHow/hide child elements
-  $('.disclose').on('click', function () {
+  $('.disclose').on('click', function() {
     $(this).closest('li').toggleClass('mjs-nestedSortable-collapsed').toggleClass('mjs-nestedSortable-expanded')
     $(this).toggleClass('glyphicon-plus').toggleClass('glyphicon-minus')
   })
 
   // Library view: Show/hide description
-  $('#library-view .expandEditor, #library-view .itemTitle').click(function () {
+  $('#library-view .expandEditor, #library-view .itemTitle').click(function() {
     $(this).parent().find('.menuEdit').toggleClass('hidden').toggleClass('show')
     $(this).parent().find('.expandEditor').toggleClass('glyphicon-chevron-down').toggleClass('glyphicon-chevron-up')
   })
 
   // Competency view: Show/hide description
-  $('#competency-view .expandEditor, #competency-view .itemTitle').click(function () {
-    $(this).parent().find('.menuEdit').toggleClass('hidden').toggleClass('show')
-    $(this).parent().find('.expandEditor').toggleClass('glyphicon-chevron-down').toggleClass('glyphicon-chevron-up')
+  $('#competency-view .expandEditor, #competency-view .itemTitle').click(
+    function() {
+      $(this).parent().find('.menuEdit').toggleClass('hidden').toggleClass('show')
+      $(this).parent().find('.expandEditor').toggleClass('glyphicon-chevron-down').toggleClass('glyphicon-chevron-up')
+    }
+  )
+
+  // Show/hide options
+  $('.dot-menu').click(function() {
+    $(this).parent().find('.dot-popup').removeClass('hide')
+    $(this).parent().find('.dot-popup').addClass('show-popup')
   })
 
-  // Delete list
-  $('.delete-menu').click(function () {
-    $(this).parent().parent().remove()
+  // Delete EO
+  $('.delete-menu').click(function() {
+    // Get guid
+    const guids = []
+    guids.push($(this).parent().parent().parent().attr('class').split(" ")[0])
+    // Get guids of all child elements
+    let guidChildLis = $(this).parent().parent().parent().find('.list-item').toArray()
+    for (let i = 0;i < guidChildLis.length;i++) {
+    guids.push($(guidChildLis[i]).attr('class').split(" ")[0])
+    }
+
+    // Update the number of EOs
+    updateEoCounter('delete', guids)
+
+    // Delete the EO element
+    $(this).parent().parent().parent().remove()
   })
 
-  // Highlight the element when a star icon is clicked
-  $('.highlight').click(function () {
-    // Get the first class name (guid) of the parent li
-    var highlightClass = $(this).parent().parent().attr('class').split(' ')[0]
-    // Select all star icons under the same guid
-    var highlightItem = '.' + highlightClass + ' > .menuDiv .glyphicon-star'
-    $(highlightItem).toggleClass('highlight-show')
+  // Cancel button
+  $('.cancel').click(function() {
+    $(this).parent().removeClass('show-popup')
+    $(this).parent().addClass('hide')
   })
 
+  /**
+  * Sort function on the right side
+  * -Sort by course name
+  * -Sort by course code
+  * -Sort by the number of EOs on the left side
+  */
   // Sort EOs by course name/course code
-  $('#sort-menu').change(function() {
-    let sortFlg   // 'name' or 'code'
-    let sortTitle = []  // EO titles to sort
+    // Show/hide options
+  $('#competency-view #sort-menu').click(function() {
+    $('#sort-options').toggleClass('hide').toggleClass('show-popup')
+  })
+
+  $('.sort-option').click(function() {
+    console.log('clicked')
+    let sortFlg // name/code/counter
+    let sortTitle = [] // EO titles to sort
     const currentTitle = [] // Current EO titles (i.e. GIS4212 - PM Methods)
     const sortedElement = []
     const sortView = document.getElementById('competency-view')
-    const currentOl = sortView.getElementsByClassName('ol-level')  // 'ol' elements
+    const currentOl = sortView.getElementsByClassName('ol-level') // 'ol' elements
     const currentLis = sortView.getElementsByClassName('list-item') // 'li' elements
-    const sortTarget = sortView.getElementsByClassName('itemTitle')  // 'span' elements with 'itemTitle' class
-
+    const sortTarget = sortView.getElementsByClassName('itemTitle') // 'span' elements with 'itemTitle' class
+    const sortCounter = sortView.getElementsByClassName('counter')  // number of the EO in the tree
+    // const sortTarget = ""
     // Function to sort elements of sortTitle array
-    function sortItems (sortFlg) {
+    function sortItems(sortFlg) {
       sortTitle.sort(function(a, b) {
         // If sort targets are course names
-        if (sortFlg === "name") {
-          a = a.toString().toLowerCase();
-          b = b.toString().toLowerCase();
+        if (sortFlg === 'name') {
+          a = a.toString().toLowerCase()
+          b = b.toString().toLowerCase()
         }
         // Sort elements of sortTitle array
         if (a < b) {
-          return -1;
-        } else if (a > b){
-          return 1;
+          return -1
+        } else if (a > b) {
+          return 1
         }
-        return 0; 
-      })        
+        return 0
+      })
     }
 
-    // Get a value of sort menu: course code/course name
-    let value = $(this).val()
-    if (value === "Course code") {
-      sortFlg = "code"
-    } else if (value === "Course name") {
-      sortFlg = "name"
+    // Get a value of sort menu: course code/course name/counter
+    let value = $(this).attr('value')
+    if (value === 'Course code') {
+      sortFlg = 'code'
+    } else if (value === 'Course name') {
+      sortFlg = 'name'
+    } else if (value === 'Counter') {
+      sortFlg = 'counter'
     }
 
     // Set array to sort
     for (let i = 0; i < sortTarget.length; i++) {
       // If sort by course name
-      if (sortFlg === "name") {
+      if (sortFlg === 'name') {
         // Divide the EO into a code and title
         let tmp = sortTarget[i].textContent.split('- ')
         // If EO doesn't have a code
-        if (typeof(tmp[1]) == "undefined") {  
+        if (typeof tmp[1] === 'undefined') {
           currentTitle.push(tmp[0])
         } else {
           currentTitle.push(tmp[1])
         }
       // If sort by course code
-      } else {
+      } else if (sortFlg === 'code') {
         currentTitle.push(sortTarget[i].textContent)
+      // If sort by course counter
+      } else if (sortFlg === 'counter') {
+        // Combine the counter with EO title including code to differentiate each EO
+        // (i.e. "GIS4212 - PM Methods 0" -> "0GIS4212 - PM Methods")
+        currentTitle.push(sortCounter[i].textContent + sortTarget[i].textContent)
       }
     }
 
     // Duplicate currentTitle array
-    sortTitle = currentTitle.slice();
+    sortTitle = currentTitle.slice()
 
     // Sort EOs in sortTitle array
     sortItems(sortFlg)
@@ -202,26 +404,109 @@ $().ready(function () {
       currentOl[0].appendChild(currentOl[0].removeChild(sortedElement[l]))
     }
   })
+
+  /**
+  * Highlight star icons and scrollbar
+  * Note: Highlight of the scrollbar uses mark.js
+  */
+  // Setting of highlight function
+  const colors = ['#f7e30c', '#ff0000', '#00ff00', '#0000ff']
+  let colorIndex = 0
+  let clicked = []
+  const view = document.getElementById('competency-view')
+  const lis = view.getElementsByClassName('list-item')
+
+  // Create array of guid
+  for (let i = 0; i < lis.length; i++) {
+    let guid = lis[i].getAttribute('class').split(' ')[0] // All guids
+    clicked.push({guid: guid, clicked: false})
+  }
+
+  // Highlight a star icon and show a highlighted line on the scrollbar when a star is clicked
+  $('.highlight').click(function() {
+    // Get the clicked star icon
+    var highlightClass = $(this).parent().parent().attr('class').split(' ')[0]
+    var highlightItem = '.' + highlightClass + ' > .menuDiv .glyphicon-star'
+    // Get the number of guid
+    var guidIndex = highlightClass.replace(/guid_/g, '') - 1
+    // Get EO title
+    var highlightTitle = '#competency-view .' + highlightClass + ' .itemTitle'
+    var highlightText = $(highlightTitle).text()
+    // Set a scrollbar on the competency view
+    var view = document.getElementById('competency-view')
+    var container = view.querySelector('.ol-level')
+    var containerY = container.offsetTop      // Distance from 'ol'
+    var containerH = container.scrollHeight   // Hight of 'ol'
+    var customStyle = document.createElement('style');
+    // var customStyle = container.querySelector('.scroll-style')
+    var styleClass = highlightClass + '_scroll-style'
+
+    // Reset the index of colour array if it reached the max number
+    if (colorIndex >= colors.length) {
+      colorIndex = 0
+    }
+    // Set highlights on the scrollbar
+    var renderScrollMarker = ($parent, posArr) => {
+      var _posArr = posArr.map(i => {
+        // Return percentage of transparent/highlight colours on the scrollbar
+        return `transparent ${i}, currentColor ${i}, currentColor calc(${i} + 3px), transparent calc(${i} + 3px)`;
+      })
+      // Add highlight line on the scrollbar
+      customStyle.setAttribute('class', styleClass)
+      customStyle.innerHTML = `ol::-webkit-scrollbar-track {
+        background: linear-gradient(${_posArr.join()});
+      }`
+      // customStyle.innerHTML = `ol::-webkit-scrollbar-track {
+      //   color: ${colors[colorIndex]}; background: linear-gradient(${_posArr.join()});
+      // }`
+    }
+
+    // Calculate the position of highlight
+    var calcEleRelativePos = $ele => {
+      return ($ele.offsetTop - containerY) / containerH
+    }
+
+    // Set options for mark function
+    var markOpt = {
+      className: 'mark',          // Add a class name
+      separateWordSearch: false,  // Treat words sparated by space as one word
+      done: function () {         // Callback function called after all marks are done
+        var marks = document.querySelectorAll(`.mark`);
+        // Create a new array with the result of a function on every element in the calling array
+        var allY = [].map.call(marks, (mark) => {
+          // Get the position of the highlight with two decimals
+          return (calcEleRelativePos(mark) * 100).toFixed(2) + '%'
+        })
+        // Add a highlighted line on the scrollbar
+        renderScrollMarker(container, allY);
+      }
+    }
+    var instance = new Mark(container);
+
+    // If the clicked star is already highlighted
+    if (clicked[guidIndex].clicked) {
+      // Disable the highlight of the star
+      $(highlightItem).css('color', 'black')
+
+      // Remove the highlight on the scrollbar
+      instance.unmark(markOpt)
+      var removeStyle = '.' + styleClass
+      $(removeStyle).remove()
+console.log(clicked)
+      clicked[guidIndex] = {guid: highlightClass, clicked: false}
+    // If the clicked star is not highlighted
+    } else {
+      // Add highlight to the star
+      $(highlightItem).css('color', colors[colorIndex])
+
+      // Add a style tag
+      container.appendChild(customStyle);
+console.log(clicked)
+      // Highlight the scrollbar
+      instance.mark(highlightText, markOpt);
+      colorIndex++
+      clicked[guidIndex] = {guid: highlightClass, clicked: true}
+    }
+  })
 })
 
-// Function to search through list and hide the items that don't have the characters that were inputted
-function filterNames(view) {
-  const filterView = document.getElementById(view)
-  // Get value of input
-  const filterValue = filterView.getElementsByClassName('filterInput')[0].value.toUpperCase()
-  // Get all EO elements
-  filterTitle = filterView.getElementsByClassName('itemTitle')
-
-  // Loop through the EO elements
-  for (let i = 0; i < filterTitle.length; i++) {
-    // Get the EO title
-    const title = filterTitle[i].textContent.toUpperCase()
-    // If the EO title matched with the value of input, do nothing
-    if (title.indexOf(filterValue) > -1) {
-      filterTitle[i].parentNode.style.display = ''
-    // If the EO title didn't match with the value of input, hide the parent div
-    } else {
-      filterTitle[i].parentNode.style.display = 'none' 
-    }
-  }
-}

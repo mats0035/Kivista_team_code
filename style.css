@@ -1,4 +1,4 @@
-body {
+body, #sort-options {
 	font-size: 13px;
 	font-family: Helvetica, arial, sans-serif;
 	margin: 20px auto;
@@ -11,7 +11,21 @@ h1, h2, h3 {
 
 p,ol,ul,pre,form {
 	margin-top: 0;
-	margin-bottom: 1em;
+	margin-bottom: 0;
+}
+
+h2 {
+	font-size: 15px;
+	margin: 0 0 0 10px;
+}
+
+.placeholder {
+	outline: 1px dashed #4183C4;
+}
+
+.mjs-nestedSortable-error {
+	background: #fbe3e4;
+	border-color: transparent;
 }
 
 ol.sortable,ol.sortable ol {
@@ -23,20 +37,20 @@ ol.sortable,ol.sortable ol {
 	-moz-border-radius: 3px;
 	border-radius: 3px;
 	cursor: move;
-	margin: 5px;
-	padding: 10px;
+	/* margin: 5px; */
+	padding: 15px;
 }
 
-#library-view {
-	margin-left: -40px;
+li.mjs-nestedSortable-collapsed.mjs-nestedSortable-hovering div {
+	border-color: #999;
 }
 
-#competency-view ol {
-	padding: 0;
+.disclose, .expandEditor {
+	cursor: pointer;
+	width: 20px;
 }
 
-.sortable li.mjs-nestedSortable-collapsed > ol,
-#competency-view li .disclose, #competency-view li .delete-menu {
+.sortable li.mjs-nestedSortable-collapsed > ol {
 	display: none;
 }
 
@@ -50,36 +64,6 @@ ol.sortable,ol.sortable ol {
 	padding: 0;
 }
 
-/* li.mjs-nestedSortable-collapsed.mjs-nestedSortable-hovering div {
-	border-color: #999;
-} */
-
-/* Border colour when an element is dragged */
-.placeholder {
-	outline: 1px dashed #4183C4;
-}
-
-/* Background colour when dragging is banned */
-.mjs-nestedSortable-error {
-	background: #fbe3e4;
-	border-color: transparent;
-}
-
-/* #tree {
-	width: 550px;
-	margin: 0;
-} */
-
-.disclose, .expandEditor {
-	cursor: pointer;
-	width: 20px;
-}
-
-/* List items */
-.menuDiv {
-	background: #EBEBEB;
-}
-
 .menuEdit {
 	background: #FFF;
 	margin-bottom: 0 !important;
@@ -90,24 +74,236 @@ ol.sortable,ol.sortable ol {
 	cursor: pointer;
 }
 
-/* Delete/star icons */
-.delete-menu, .highlight {
+/* .delete-menu, .highlight {
+	float: right;
+	cursor: pointer;
+	margin-left: 10px;
+} */
+.highlight {
 	float: right;
 	cursor: pointer;
 	margin-left: 10px;
 }
+.delete-menu {
+  cursor: pointer !important;
+}
 
-/* Bootstrap icons */
+.glyphicon-option-vertical {
+  cursor: pointer;
+}
+.show-popup {
+  display: flex !important;
+}
+
+.hide {
+  display: none;
+}
+.dot-popup {
+  position: absolute;
+	right: 0;
+  top: 0;
+  background:#fff;
+  box-shadow: 0 8px 6px -6px #999;
+  border: 1px solid #999;
+  padding: 20px;
+  z-index: 100;
+  cursor: pointer !important;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.cancel {
+  display: block;
+  margin: auto 5px;
+}
+
+#library-view {
+	padding: 0;
+	margin-right: 10px;
+	margin-left: -10px;
+	background-color: #e5e5e4;
+}
+
+#competency-view ol {
+	padding: 0;
+	overflow: auto;
+	max-height: 40em;	 /* Setting to show a scrollbar */
+}
+
+#competency-view li .disclose, #competency-view li .delete-menu {
+	display: none;
+}
+
+.section-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 10px;
+	height: 50px;
+}
+
+.competency-tree {
+	padding: 0;
+	border: 3px solid #e5e5e4;
+	background-color: #ffffff;
+	min-height: 45px;
+}
+
+.competency-tree .menuDiv {
+	background-color: #ffffff;
+  border-bottom: 3px solid #e5e5e4;
+	margin: 0;
+}
+
+.competency-tree ol:nth-child(n) {
+  background-color: #eee;
+}
+
 .glyphicon {
-	top: 3px;
+	padding: 0 5px;
 }
 
-.highlight-show {
-color: #ffc000;
-}
-
-/* Sort field */
 #sort-menu {
-	background:#2a4b7c;
-	color: white;
+	cursor: pointer;
+}
+
+#sort-options {
+	position: absolute;
+	left: -65px;
+	top: 25px;
+	display: flex;
+	flex-direction: column;
+	z-index: 100;
+	background-color: #fff;
+	border: 1px solid #e5e5e4;
+	box-shadow: 0 8px 6px -6px #999;
+	width: 150px;
+}
+#sort-options:before {
+  content: "";
+  position: absolute;
+  top: -25px;
+  left: 50%;
+  margin-left: -15px;
+  border: 15px solid transparent;
+  border-bottom: 15px solid #e5e5e4;
+}
+.sort-option, .sort-by {
+	padding: 10px 15px;
+}
+
+.sort-option:hover {
+	cursor: pointer;
+	color: #fff;
+	background-color: #2a4b7c;
+}
+.sort-by {
+	background: #e5e5e4;
+}
+.section-header-right {
+	display: flex;
+	align-items: center;
+}
+
+.filterInput {
+	float: right;
+}
+
+#competency-view {
+	background-color: #e5e5e4;
+	padding: 0;
+}
+
+.competencies {
+	border: 3px solid #e5e5e4;
+	background-color: #ffffff;
+	padding: 0;
+	margin-bottom: none;
+}
+
+.competencies .competency {
+	border-bottom: 3px solid #e5e5e4;
+}
+
+.competencies .competency:last-child {
+	border: none;
+}
+
+.competencies .glyphicon-chevron-up {
+	float: right;
+}
+
+.glyphicon-option-vertical {
+	float: right;
+}
+
+.glyphicon-minus, .glyphicon-plus{
+	color: #e5e5e4;
+}
+
+.glyphicon-chevron-down, .glyphicon-chevron-up {
+	float: right;
+}
+
+.glyphicon-share-alt {
+	transform: rotate(270deg);
+	color: #e5e5e4;
+}
+
+#competency-view .glyphicon-share-alt {
+	display: none;
+}
+
+.performance {
+	display: flex;
+	text-align: center;
+}
+
+.learning-objectives p, .conditions p:first-child{
+	padding-bottom: 10px;
+	text-align: center;
+}
+
+.learning-objectives table tr,th, td {
+	padding: 3px 10px;
+	border: 1px solid #dddddd;
+	text-align: center;
+}
+
+.counter {
+	font-family: Helvetica, arial, sans-serif;
+	padding-left: 5px;
+}
+#library-view .counter {
+	display: none;
+}
+/* css for scrollbar */
+ol::-webkit-scrollbar {
+	width: 10px;
+	border: 1px solid #333;
+}
+
+/* Draggable scrollbar  */
+#competency-view  ol::-webkit-scrollbar-thumb {
+	background-color: rgba(0, 0, 0, 0.2);
+	border-radius: 1em;
+}
+
+/* Highlighted line on the scrollbar */
+#competency-view  ol::-webkit-scrollbar-track {
+	color: #bff;
+	background-color: rgba(0,0,0, .1);
+}
+
+/* Hide default text highlight */
+mark {
+	background-color: transparent !important;
+	padding: 0 !important;
+}
+
+@media (min-width: 1200px) {
+	/* .container {
+    width: 95%;
+	} */
 }
