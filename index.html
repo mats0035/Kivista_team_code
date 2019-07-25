@@ -25,7 +25,7 @@
   </header>
   <div class="container">
     <div class="row">
-      <div id="library-view" class="col-md-7">
+      <div id="library-view" class="col-md-8">
         <div class="section-header">
           <h2>Foundation View</h2>
           <div class="section-header-right">
@@ -37,16 +37,34 @@
         <ol id="competency-tree" class="competency-tree sortable ui-sortable mjs-nestedSortable-branch mjs-nestedSortable-expanded">
         <li style="display: list-item;" class="guid_1 competency list-item mjs-nestedSortable-branch mjs-nestedSortable-expanded">
         <div class="menuDiv">
-          <span title="Click to show/hide children" class="disclose glyphicon glyphicon-minus"></span>
+          <span class="disclose glyphicon glyphicon-minus"></span>
           <span class="glyphicon glyphicon-share-alt"></span>
           <span class="itemTitle">* Leading Projects</span>
-          <span title="Click for options." class="dot-menu glyphicon glyphicon-option-vertical"><span class="counter">0</span></span>
-          <span title="Click to highlight item." class="highlight glyphicon glyphicon-star"></span>
-          <div class="dot-popup hide">
-            <div class="delete-menu" title="Click to delete item.">Delete<span title="Click to delete item." class="glyphicon glyphicon-remove"></span></div>
-            <button class="cancel">Cancel</button>
-          </div>
-          <span title="Click to show/hide item editor" class="expandEditor glyphicon glyphicon-chevron-down"></span>
+          <span class="dot-menu glyphicon glyphicon-option-vertical">
+            <div class="dot-popup hide">
+              <div class="sort-by">Menu</div>
+              <div class="dot-option copy-menu">Copy</div>
+              <div class="dot-option delete-menu">Delete</div>
+              <!-- <button class="cancel">Cancel</button> -->
+            </div>
+          </span>
+          <span class="counter">0</span>
+          <span class="highlight glyphicon glyphicon-star"></span>
+
+
+     <!-- <div id="sort-menu" class="glyphicon glyphicon-sort">
+            <div id="sort-options" class="hide">
+              <div class="sort-by">Sort by</div>
+              <div value="Course code" class="sort-option">Course Code</div>
+              <div value="Course name" class="sort-option">Course Name</div>
+              <div value="Counter" class="sort-option">Counter</div>
+            </div>
+          </div> -->
+
+
+
+
+          <span class="expandEditor glyphicon glyphicon-chevron-down"></span>
 
           <div class="menuEdit hidden">
             <p>Experience with participating in, and leading, projects</p>
@@ -94,7 +112,7 @@
     </div>
 
     <!-- Competencies -->
-    <div id="competency-view" class="col-md-5">
+    <div id="competency-view" class="col-md-4">
       <div class="section-header">
         <h2>Enabling Objectives</h2>
         <div class="section-header-right">

@@ -43,13 +43,16 @@ $().ready(function() {
         <span class="disclose glyphicon glyphicon-minus"></span>
         <span class="glyphicon glyphicon-share-alt"></span>
         <span class="itemTitle">${titleArray[i]}</span>
-        <span class="dot-menu glyphicon glyphicon-option-vertical"><span class="counter">0</span></span>
-        <span class="highlight glyphicon glyphicon-star"></span>
-        <div class="dot-popup hide">
-          <div class="delete-menu">Delete<span class="glyphicon glyphicon-remove"></span>
+        <span class="dot-menu glyphicon glyphicon-option-vertical">
+          <div class="dot-popup hide">
+              <div class="sort-by">Menu</div>
+              <div class="dot-option copy-menu">Copy</div>
+              <div class="dot-option delete-menu">Delete</div>
+            <!-- <button class="cancel">Cancel</button> -->
           </div>
-          <button class="cancel">Cancel</button>
-        </div>
+        </span>
+        <span class="counter">0</span>
+        <span class="highlight glyphicon glyphicon-star"></span>
         <span class="expandEditor glyphicon glyphicon-chevron-down"></span>
 
         <div class="menuEdit hidden">
@@ -100,7 +103,7 @@ $().ready(function() {
   parent[0].innerHTML = htmlArray.join('')
 
   /** 
-  * Function to update the EO counter
+  * Function to update EO counters
   */
   function updateEoCounter (action, guids) {
     for (let i=0; i < guids.length;i++) {
@@ -142,7 +145,7 @@ $().ready(function() {
     countEOs.push({guid: guid, num: 0})
   }
 
-  // Initialize the EO counter: Count up the default EOs in the tree
+  // Initialize EO counters: Count up the default EOs in the tree
   const defaultGuid = []
   var tmp1 = document.getElementById('library-view')
   var tmp2 = tmp1.getElementsByClassName('list-item')
@@ -301,32 +304,44 @@ $().ready(function() {
 
   // Show/hide options
   $('.dot-menu').click(function() {
-    $(this).parent().find('.dot-popup').removeClass('hide')
-    $(this).parent().find('.dot-popup').addClass('show-popup')
+    $(this).parent().find('.dot-popup').toggleClass('hide').toggleClass('show-popup')
   })
 
   // Delete EO
   $('.delete-menu').click(function() {
-    // Get guid
-    const guids = []
-    guids.push($(this).parent().parent().parent().attr('class').split(" ")[0])
-    // Get guids of all child elements
-    let guidChildLis = $(this).parent().parent().parent().find('.list-item').toArray()
-    for (let i = 0;i < guidChildLis.length;i++) {
-    guids.push($(guidChildLis[i]).attr('class').split(" ")[0])
+    var result = confirm("Are you sure you want to delete this EO?");
+    if (result) {
+      // Get guid
+      const guids = []
+      guids.push($(this).parent().parent().parent().parent().attr('class').split(" ")[0])
+      console.log('guids')
+      console.log(guids)
+      // Get guids of all child elements
+      let guidChildLis = $(this).parent().parent().parent().parent().find('.list-item').toArray()
+      for (let i = 0;i < guidChildLis.length;i++) {
+      guids.push($(guidChildLis[i]).attr('class').split(" ")[0])
+      }
+
+      // Update the number of EOs
+      updateEoCounter('delete', guids)
+
+      // Delete the EO element
+      $(this).parent().parent().parent().parent().remove()  
     }
-
-    // Update the number of EOs
-    updateEoCounter('delete', guids)
-
-    // Delete the EO element
-    $(this).parent().parent().parent().remove()
   })
 
   // Cancel button
-  $('.cancel').click(function() {
-    $(this).parent().removeClass('show-popup')
-    $(this).parent().addClass('hide')
+  // $('.cancel').click(function() {
+  //   $(this).parent().removeClass('show-popup')
+  //   $(this).parent().addClass('hide')
+  // })
+
+  // Copy EO
+  $('.copy-menu').click(function() {
+    let el = $(this).parent().parent().parent().parent()
+    el.after(el.clone(true))
+    el.next().find('.dot-popup').removeClass('show-popup')
+    el.next().find('.dot-popup').addClass('hide')
   })
 
   /**
@@ -426,17 +441,17 @@ $().ready(function() {
     }
 
     // Update the position of the ticks on the scrollbar
-      result = setScrollbar('library')
-      updateScrollbar(result)
-      result = setScrollbar('competency')
-      updateScrollbar(result)
+    result = setScrollbar('library')
+    updateScrollbar(result)
+    result = setScrollbar('competency')
+    updateScrollbar(result)
   })
 
   /**
   * Highlight star icons and scrollbar
   * Note: scrollbar function uses mark.js
   */
-  // Return the setting of the scrollbar
+  // Return settings of the scrollbar
   function setScrollbar (view) {
     // Initialize variables
     if (view === 'library') {

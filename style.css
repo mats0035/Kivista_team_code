@@ -1,4 +1,4 @@
-body, #sort-options {
+body, #sort-options, .dot-popup {
 	font-size: 13px;
 	font-family: Helvetica, arial, sans-serif;
 	margin: 20px auto;
@@ -44,13 +44,14 @@ ol.sortable,ol.sortable ol {
 	padding: 0;
 	margin-right: 10px;
 	margin-left: -10px;
-	background-color: #e5e5e4;
+	background-color: #d8eaf2;
 }
 
 .competencies, .competency-tree {
 	padding: 0;
-	overflow: auto;
-	max-height: 40em;	 /* Setting to show a scrollbar */
+	overflow-Y: auto;
+	overflow-x: hidden;
+	height: 40em;	 /* Setting to show a scrollbar */
 }
 
 #competency-view li .disclose, #competency-view li .delete-menu {
@@ -67,19 +68,19 @@ ol.sortable,ol.sortable ol {
 
 .competency-tree {
 	padding: 0;
-	border: 3px solid #e5e5e4;
-	background-color: #ffffff;
+	border: 3px solid #d8eaf2;
+	background-color: #d8eaf2;
 	min-height: 45px;
 }
 
 .competency-tree .menuDiv {
 	background-color: #ffffff;
-  border-bottom: 3px solid #e5e5e4;
+  border-bottom: 3px solid #d8eaf2;
 	margin: 0;
 }
 
 .competency-tree ol:nth-child(n) {
-  background-color: #eee;
+  background-color: #d8eaf2;
 }
 
 li.mjs-nestedSortable-collapsed.mjs-nestedSortable-hovering div {
@@ -125,29 +126,21 @@ li.mjs-nestedSortable-collapsed.mjs-nestedSortable-hovering div {
   cursor: pointer !important;
 }
 
-.glyphicon-option-vertical {
+.dot-menu {
   cursor: pointer;
+	float: right;
 }
+
+#competency-view .dot-menu {
+	display: none;
+}
+
 .show-popup {
   display: flex !important;
 }
 
 .hide {
   display: none;
-}
-.dot-popup {
-  position: absolute;
-	right: 0;
-  top: 0;
-  background:#fff;
-  box-shadow: 0 8px 6px -6px #999;
-  border: 1px solid #999;
-  padding: 20px;
-  z-index: 100;
-  cursor: pointer !important;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
 }
 
 .cancel {
@@ -163,7 +156,7 @@ li.mjs-nestedSortable-collapsed.mjs-nestedSortable-hovering div {
 	cursor: pointer;
 }
 
-#sort-options {
+#sort-options, .dot-popup {
 	position: absolute;
 	left: -65px;
 	top: 25px;
@@ -171,10 +164,20 @@ li.mjs-nestedSortable-collapsed.mjs-nestedSortable-hovering div {
 	flex-direction: column;
 	z-index: 100;
 	background-color: #fff;
-	border: 1px solid #e5e5e4;
+	border: 1px solid #d8eaf2;
 	box-shadow: 0 8px 6px -6px #999;
 	width: 150px;
 }
+
+.dot-popup {
+	position: absolute;
+	right: -45px;
+	left: auto;
+	top: 0;
+	padding: 0 !important;
+	border-radius: 0 !important;
+}
+
 #sort-options:before {
   content: "";
   position: absolute;
@@ -182,23 +185,28 @@ li.mjs-nestedSortable-collapsed.mjs-nestedSortable-hovering div {
   left: 50%;
   margin-left: -15px;
   border: 15px solid transparent;
-  border-bottom: 15px solid #e5e5e4;
+  border-bottom: 15px solid #d8eaf2;
 }
-.sort-option, .sort-by {
-	padding: 10px 15px;
+.sort-option, .sort-by, .dot-option {
+	padding: 10px 15px !important;
+	border-radius: 0 !important;
 }
 
-.sort-option:hover {
+.sort-option:hover, .dot-option:hover {
 	cursor: pointer;
 	color: #fff;
 	background-color: #2a4b7c;
 }
 .sort-by {
-	background: #e5e5e4;
+	background: #d8eaf2;
 }
 .section-header-right {
 	display: flex;
 	align-items: center;
+}
+
+.dot-option:first-child {
+	background-color: #d8eaf2;
 }
 
 .filterInput {
@@ -206,19 +214,19 @@ li.mjs-nestedSortable-collapsed.mjs-nestedSortable-hovering div {
 }
 
 #competency-view {
-	background-color: #e5e5e4;
+	background-color: #d8eaf2;
 	padding: 0;
 }
 
 .competencies {
-	border: 3px solid #e5e5e4;
+	border: 3px solid #d8eaf2;
 	background-color: #ffffff;
 	padding: 0;
 	margin-bottom: none;
 }
 
 .competencies .competency {
-	border-bottom: 3px solid #e5e5e4;
+	border-bottom: 3px solid #d8eaf2;
 }
 
 .competencies .competency:last-child {
@@ -229,12 +237,8 @@ li.mjs-nestedSortable-collapsed.mjs-nestedSortable-hovering div {
 	float: right;
 }
 
-.glyphicon-option-vertical {
-	float: right;
-}
-
 .glyphicon-minus, .glyphicon-plus{
-	color: #e5e5e4;
+	color: #d8eaf2;
 }
 
 .glyphicon-chevron-down, .glyphicon-chevron-up {
@@ -243,7 +247,7 @@ li.mjs-nestedSortable-collapsed.mjs-nestedSortable-hovering div {
 
 .glyphicon-share-alt {
 	transform: rotate(270deg);
-	color: #e5e5e4;
+	color: #d8eaf2;
 }
 
 #competency-view .glyphicon-share-alt {
@@ -269,6 +273,7 @@ li.mjs-nestedSortable-collapsed.mjs-nestedSortable-hovering div {
 .counter {
 	font-family: Helvetica, arial, sans-serif;
 	padding-left: 5px;
+	float: right;
 }
 
 #library-view .counter {
@@ -277,7 +282,7 @@ li.mjs-nestedSortable-collapsed.mjs-nestedSortable-hovering div {
 /* css for scrollbar */
 .competencies::-webkit-scrollbar, .competency-tree::-webkit-scrollbar {
 	width: 10px;
-	border: 1px solid #333;
+	border: 1px solid #999;
 	background: transparent;
 	z-index: 100;
 }
