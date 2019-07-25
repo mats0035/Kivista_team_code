@@ -47,7 +47,7 @@ ol.sortable,ol.sortable ol {
 	background-color: #e5e5e4;
 }
 
-#competency-view ol {
+.competencies, .competency-tree {
 	padding: 0;
 	overflow: auto;
 	max-height: 40em;	 /* Setting to show a scrollbar */
@@ -250,14 +250,14 @@ li.mjs-nestedSortable-collapsed.mjs-nestedSortable-hovering div {
 	display: none;
 }
 
-.performance {
+.learning-objectives {
 	display: flex;
-	text-align: center;
+	justify-content: center;
+	padding: 0 !important;
 }
 
-.learning-objectives p, .conditions p:first-child{
-	padding-bottom: 10px;
-	text-align: center;
+.performance {
+	padding: 10px 0 10px 0 !important;
 }
 
 .learning-objectives table tr,th, td {
@@ -270,11 +270,12 @@ li.mjs-nestedSortable-collapsed.mjs-nestedSortable-hovering div {
 	font-family: Helvetica, arial, sans-serif;
 	padding-left: 5px;
 }
+
 #library-view .counter {
 	display: none;
 }
 /* css for scrollbar */
-ol::-webkit-scrollbar {
+.competencies::-webkit-scrollbar, .competency-tree::-webkit-scrollbar {
 	width: 10px;
 	border: 1px solid #333;
 	background: transparent;
@@ -282,13 +283,13 @@ ol::-webkit-scrollbar {
 }
 
 /* Draggable scrollbar  */
-#competency-view  ol::-webkit-scrollbar-thumb {
+.competencies::-webkit-scrollbar-thumb, .competency-tree::-webkit-scrollbar-thumb {
 	background-color: rgba(0, 0, 0, 0.2);
 	border-radius: 1em;
 }
 
 /* Highlighted line on the scrollbar */
-#competency-view  ol::-webkit-scrollbar-track {
+.competencies::-webkit-scrollbar-track, .competency-tree::-webkit-scrollbar-track {
 	color: #2a4b7c;
 	background-color: rgba(0,0,0, .1);
 }
