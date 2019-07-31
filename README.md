@@ -1,7 +1,6 @@
 # Prototype for Kivista DBV-Capstone Foundation View
 
-## Basic infomation
-This is a prototype for DBV-Capstone foundation view (http://www.kivista.com/dbv/Foundation/DesignTree?designId=29&ShowPO=False&ShowEO=True&ShowTask=False&ShowTargetMod=False&profileType=Designer&returnUrl=~%2FDesign%2FDetail%3Fid%3D29%26profileType%3DDesigner%26showedComment%3DFalse). By default, 20 EOs are displayed in the EO list, and 10 EOs are displayed in the foundation view.
+This is a prototype for DBV-Capstone foundation view. By default, 20 EOs are displayed in the EO list, and 10 EOs are displayed in the foundation view.
 
 
 ## Features
@@ -34,7 +33,7 @@ Note: Scrollbar is displayed when the lsit is longer the height of 40em.
 For more information about mark.js, please see https://markjs.io/. 
 
 ### Events on icons
-Minus/plus icons: Show/hide child elements in the nested list.  
-Down/up arrow icons: Show/hide the detail information of EOs.  
-Dot icons: Show/hide copy and delete options. Copy option makes a copy of the EO including the child elements, and add the copy under the clicked EO. Delete option deletes the EO including the child elements.
+**Minus/plus icons:** Show/hide child elements in the nested list.  
+**Down/up arrow icons:** Show/hide the detail information of EOs.  
+**Dot icons:** Show/hide copy and delete options. Copy option makes a copy of the EO including the child elements, and add the copy under the clicked EO. Delete option deletes the EO including the child elements.
 
