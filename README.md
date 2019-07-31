@@ -29,7 +29,7 @@ Sort by counter: Sort elements by the number of EOs in the Foundation view. To d
 ### Highlight EOs
 When clicked, Star icons are highlighted on the matching EO in both the EO (right-side) list and Foundation view. Tick marks which indicate the position of the highlighted EOs will be displayed on the scrollbar. The highlight color is chosen from colors array. 
 
-## Scrollbar tick marks
+### Scrollbar tick marks
 Scrollbar function is created using a plugin mark.js. The plugin adds a mark tag under the span tag with itemTitle class of the clicked element, and a style tag in the bottom of the list holds the position of the mark tags. This style tag displays tick marks on the scrollbar.
 
 Note: Scrollbar is displayed when the list is longer than the height of 40em.  
