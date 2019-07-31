@@ -559,7 +559,7 @@ $().ready(function() {
     if (clicked[guidIndex].clicked) {
       // Disable the highlight of the star
       $(highlightItem).css('color', 'black')
-      // Rest the colour conuter
+      // Reset the colour counter
       clicked[guidIndex] = {guid: highlightClass, clicked: false}
       // Update the ticks on the scrollbar in the foundation view
       result = setScrollbar('library')
@@ -577,7 +577,7 @@ $().ready(function() {
       // Add a tick to the scrollbar in the foundation view
       result = setScrollbar('competency')
       instance.mark(highlightText, result)
-      // Rest the colour conuter
+      // Reset the colour counter
       colorIndex++
       clicked[guidIndex] = {guid: highlightClass, clicked: true}
     }
