@@ -9,15 +9,16 @@ h1, h2, h3 {
 	text-align: center;
 }
 
+h2 {
+	font-size: 15px;
+	margin: 0 0 0 10px;
+}
+
 p,ol,ul,pre,form {
 	margin-top: 0;
 	margin-bottom: 0;
 }
 
-h2 {
-	font-size: 15px;
-	margin: 0 0 0 10px;
-}
 
 .placeholder {
 	outline: 1px dashed #4183C4;
@@ -40,14 +41,15 @@ ol.sortable,ol.sortable ol {
 	/* margin: 5px; */
 	padding: 15px;
 }
-#library-view {
+
+#foundation-view {
 	padding: 0;
 	margin-right: 10px;
 	margin-left: -10px;
 	background-color: #d8eaf2;
 }
 
-.competencies, .competency-tree {
+#competencies, #competency-tree {
 	padding: 0;
 	overflow-Y: auto;
 	overflow-x: hidden;
@@ -58,6 +60,23 @@ ol.sortable,ol.sortable ol {
 	display: none;
 }
 
+#competency-tree {
+	padding: 0;
+	border: 3px solid #d8eaf2;
+	background-color: #d8eaf2;
+	min-height: 45px;
+}
+
+#competency-tree .menuDiv {
+	background-color: #ffffff;
+  border-bottom: 3px solid #d8eaf2;
+	margin: 0;
+}
+
+#competency-tree ol:nth-child(n) {
+  background-color: #d8eaf2;
+}
+
 .section-header {
 	display: flex;
 	justify-content: space-between;
@@ -66,30 +85,13 @@ ol.sortable,ol.sortable ol {
 	height: 50px;
 }
 
-.competency-tree {
-	padding: 0;
-	border: 3px solid #d8eaf2;
-	background-color: #d8eaf2;
-	min-height: 45px;
-}
-
-.competency-tree .menuDiv {
-	background-color: #ffffff;
-  border-bottom: 3px solid #d8eaf2;
-	margin: 0;
-}
-
-.competency-tree ol:nth-child(n) {
-  background-color: #d8eaf2;
+.section-header-right {
+	display: flex;
+	align-items: center;
 }
 
 li.mjs-nestedSortable-collapsed.mjs-nestedSortable-hovering div {
 	border-color: #999;
-}
-
-.disclose, .expandEditor {
-	cursor: pointer;
-	width: 20px;
 }
 
 .sortable li.mjs-nestedSortable-collapsed > ol {
@@ -104,6 +106,11 @@ li.mjs-nestedSortable-collapsed.mjs-nestedSortable-hovering div {
 	display: inline-block;
 	margin: 0;
 	padding: 0;
+}
+
+.disclose, .expandEditor {
+	cursor: pointer;
+	width: 20px;
 }
 
 .menuEdit {
@@ -122,13 +129,13 @@ li.mjs-nestedSortable-collapsed.mjs-nestedSortable-hovering div {
 	margin-left: 10px;
 }
 
-.delete-menu {
-  cursor: pointer !important;
-}
-
 .dot-menu {
   cursor: pointer;
 	float: right;
+}
+
+.delete-menu {
+  cursor: pointer !important;
 }
 
 #competency-view .dot-menu {
@@ -141,11 +148,6 @@ li.mjs-nestedSortable-collapsed.mjs-nestedSortable-hovering div {
 
 .hide {
   display: none;
-}
-
-.cancel {
-  display: block;
-  margin: auto 5px;
 }
 
 .glyphicon {
@@ -187,6 +189,7 @@ li.mjs-nestedSortable-collapsed.mjs-nestedSortable-hovering div {
   border: 15px solid transparent;
   border-bottom: 15px solid #d8eaf2;
 }
+
 .sort-option, .sort-by, .dot-option {
 	padding: 10px 15px !important;
 	border-radius: 0 !important;
@@ -197,12 +200,9 @@ li.mjs-nestedSortable-collapsed.mjs-nestedSortable-hovering div {
 	color: #fff;
 	background-color: #2a4b7c;
 }
+
 .sort-by {
 	background: #d8eaf2;
-}
-.section-header-right {
-	display: flex;
-	align-items: center;
 }
 
 .dot-option:first-child {
@@ -218,22 +218,22 @@ li.mjs-nestedSortable-collapsed.mjs-nestedSortable-hovering div {
 	padding: 0;
 }
 
-.competencies {
+#competencies {
 	border: 3px solid #d8eaf2;
 	background-color: #ffffff;
 	padding: 0;
 	margin-bottom: none;
 }
 
-.competencies .competency {
+#competencies .competency {
 	border-bottom: 3px solid #d8eaf2;
 }
 
-.competencies .competency:last-child {
+#competencies .competency:last-child {
 	border: none;
 }
 
-.competencies .glyphicon-chevron-up {
+#competencies .glyphicon-chevron-up {
 	float: right;
 }
 
@@ -276,11 +276,12 @@ li.mjs-nestedSortable-collapsed.mjs-nestedSortable-hovering div {
 	float: right;
 }
 
-#library-view .counter {
+#foundation-view .counter {
 	display: none;
 }
-/* css for scrollbar */
-.competencies::-webkit-scrollbar, .competency-tree::-webkit-scrollbar {
+
+/* Scrollbar */
+#competencies::-webkit-scrollbar, #competency-tree::-webkit-scrollbar {
 	width: 10px;
 	border: 1px solid #999;
 	background: transparent;
@@ -288,13 +289,13 @@ li.mjs-nestedSortable-collapsed.mjs-nestedSortable-hovering div {
 }
 
 /* Draggable scrollbar  */
-.competencies::-webkit-scrollbar-thumb, .competency-tree::-webkit-scrollbar-thumb {
+#competencies::-webkit-scrollbar-thumb, #competency-tree::-webkit-scrollbar-thumb {
 	background-color: rgba(0, 0, 0, 0.2);
 	border-radius: 1em;
 }
 
 /* Highlighted line on the scrollbar */
-.competencies::-webkit-scrollbar-track, .competency-tree::-webkit-scrollbar-track {
+#competencies::-webkit-scrollbar-track, #competency-tree::-webkit-scrollbar-track {
 	color: #2a4b7c;
 	background-color: rgba(0,0,0, .1);
 }
