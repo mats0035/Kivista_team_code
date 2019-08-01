@@ -6,13 +6,13 @@ This is a prototype for DBV-Capstone Foundation view. By default, 20 EOs are dis
 ## Features
 
 ### Drag and drop elements
-Foundation view:
+**Foundation view:**
 Drag and drop EOs to change the hierarchy of EOs. Able to create unlimited nested list. If shift key is pressed before dragging, the element will be duplicated on drop.
 
-EO list:
+**EO list:**
 Drag and drop EOs to add the element to the Foundation View. Can't have a nested list.
 
-Drag and drop function is created using NestedSortable.js. For more information about NestedSortable, please see https://github.com/mjsarfatti/nestedSortable.
+Drag and drop function is created using NestedSortable.js. For more information about NestedSortable, please see https://github.com/ilikenwf/nestedSortable.
 
 ### Search
 filterNames function will be triggered when the search bar is clicked. filterNames checks EO titles and hides the elements that don't contain the searched word. 
@@ -21,7 +21,8 @@ filterNames function will be triggered when the search bar is clicked. filterNam
 updateEoCounter function counts the number of EOs in the foundation view by guids, and updates the counters in the EO list. If the counter is more than 0 (which means the EO already is placed in the Foundation view), the EO in the EO (right-side) list will be grayed out.
 
 ### Sort EOs
-Sort elements in the EO list by course name, course code and counter in the EO (right-side) list.  
+Sort elements in the EO list by course name, course code and counter in the EO (right-side) list.
+
 **Sort by course name:** Sort elements in alphabetical order of the EO titles (i.e. "PM Methods").  
 **Sort by course code:** Sorts elements by course codes and EO titles (i.e. "GSI4212 - PM Mothodes"). This is to sort the EOs with a same course code in alphabetical order.  
 **Sort by counter:** Sort elements by the number of EOs in the Foundation view. To differentiate the EOs with a same number, this option combines the counter with the course code and course name before sorting. (i.e. "GIS4212 - PM Methods 0" -> "0GIS4212 - PM Methods")
