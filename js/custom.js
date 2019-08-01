@@ -21,16 +21,14 @@ function filterNames(view) {
     }
   }
 }
+
 $(function() {
   // Array of EO titles
   const titleArray = [ "* Leading Projects", "GIS4207 - Create Dynamic Web Pages", "GIS4204 - Electromagnetic Spectrum", "GIS4110 - Extracting and Combining Features", "GIS4111 - Feature Generalization", "GIS4111 - Geographic Reference Systems", "GIS4112 - Historic Cartography", "GIS4110 - Human Geography", "GIS4112 - Information Graphic Principles", "GIS4204 - Knowledge of Physics and Sensors", "Map Design Principles", "GIS4110 - Physical Geography", "GIS4111 - Projection Transformation", "GIS4107 - Simple Programs", "GIS4111 - Static Web Pages with Design", "GIS4111, GIS4113 - Strategic Purpose", "GIS4112 - Summary Statistics (non-spatial)", "GIS4111 - Tech Writing", "GIS4112 - Various Map Types", "Visual Variables", "Web Mapping Applications HTML/CSS/JS API"]
-
   // Array of EO statement infomation
   const statementArray = ["Experience with participating in, and leading, projects", "Create dynamic web pages. Create web pages that display content from a database", "Describe the Electromagnetic Spectrum", "Perform Extracting and Combining Features", "Feature Generalization", "Describe and apply various horizontal and vertical geographic reference systems", "Outline the evolution of cartography through history", "Awareness of Human Geography Methods", "Organize information for maximum clarity and effectiveness using graphic principles", "Demonstrate theoretical knowledge of physics, sensors and imagery", "Describe and effectively apply Map Design principles in the creation of thematic map products", "Awareness of Physical Geography Methods", "Describe and apply coordinate conversion and projection transformation methods", "Create simple programs using structured programming concepts and techniques", "Create Static Web Pages with HTML/CSS Design", "Determine The Strategic Purpose", "Summarize non-spatial data using appropriate statistical techniques", "Experience with technical writing for documentation of processes, training", "Describe and understand the uses of various map types", "Describe and apply visual variables appropriately with data measurement scales and spatial data types", "Create Web Mapping Applications using HTML/CSS and JavaScript, and the ESRI JS API"]
-
   // Array of EO standard infomation
   const standardArray = ["", "Create dynamic web pages with JavaScript/DoJo/jQuery, HTML 5 and CSS, including responsive design methods (eg Bootstrap). Create web pages that display content from a database; Use HTML and JavaScript to create dynamic web pages. Use Server-Side programming techniques to access databases and display content in a web page", "Describe the electromagnetic spectrum; Describe the major divisions used for remote sensing; Describe the difference between reflected and emitted energy; Describe the difference between spectral and spatial resolution", "Perform Extracting and Combining Features using: Merge, Append, Dissolve, Clip, Erase, Split, Spatial Join Summarizing ( frequency, summary statistics )", "Effectively compile and select and generalize base maps suitable for special purpose mapping at a given viewing scale;", "Describe and apply various horizontal and vertical geographic reference systems; Explain the relationships between the geoid, the sphere and the ellipsoid; Choose the appropriate projection for a given geographic dataset and analysis; Describe land partitioning systems", "Outline the evolution of cartography through history; Describe how cartographic principles and practice have been shaped by culture over time; Describe how cartographic principles have been shaped by technological innovation over time", "Awareness of Human Geography Methods", "Explain and effectively apply graphic concepts such as Visual Hierarchy and Gestalt Principles to cartographic design problems", "Demonstrate theoretical knowledge of physics, sensors and imagery", "Describe and effectively apply Map Design principles in the creation of thematic map products Reliably demonstrate understanding of the cartographic design process; Reliably demonstrate understanding of thematic mapping and map design concepts and terminology; Effectively compile and select and generalize base maps suitable for special purpose mapping at a given viewing scale; Layout map elements to achieve visual balance using effective planar organization; Effectively use hierarchical organization principles to achieve figure/ground differentiation in thematic maps; Reliably demonstrate understanding of the different approaches required in the design of hard-copy output and monitor displays", "", "Describe and apply coordinate conversion and projection transformation methods; Explain and demonstrate the transformation between spherical coordinates and plane coordinates; Explain the concept of developable surfaces; Calculate coordinate positions in various map projections according to industry-standard specifications", "Create simple programs using structured programming concepts and techniques; Plan programs and organize code effectively using various approaches to program design; Use sequence, decision and loop structures in the creation of code; Describe and use subroutines and functions to create easy-to-understand modular programs; Describe and use lists and arrays in programs; Input data interactively from a user or from a file; Output data to a user interface or to a file", "Create Static Web Pages with HTML/CSS Design", "Determine The Strategic Purpose", "Describe and use appropriate (aspatial) summary statistics based on the nature of the data set; Appropriately graph data distributions;", "", "Describe and understand the uses of various map types.; Understand map recycling options; Outline various forms of cartographic relief representations; Visually interpret information from various types of maps", "Describe and effectively apply the relationship between visual variables, data measurement scales and spatial data types in a cartographic context; Select the appropriate visual variable to represent data measured at a specific measurement scale; Describe the relationship between point symbol size and user perception; Explain how select visual variables such as transparency, resolution and crispness may be used to effectively; display data accuracy and uncertainty", ""]
-
   const htmlArray = []    // Array to hold html for all default EOs
   const view1 = document.getElementById('competency-tree')  // ol in the foundation view
   const view2 = document.getElementById('competencies')     // ol in the EO list
@@ -148,7 +146,7 @@ $(function() {
   }
 
   /*
-  * Make EO list on the right side
+  * Make default EO lists
   * -Set HTML of EOs
   * -Insert the HTML code inside the 'ol' element
   */
@@ -367,9 +365,9 @@ $(function() {
 
   // When Course name/Course code/Counter is clicked
   $('.sort-option').click(function() {
-    let sortFlg // name, code or counter
-    let sortTitle = [] // EO titles to be sorted
-    const currentTitle = [] // Current EO titles (i.e. GIS4212 - PM Methods)
+    let sortFlg               // name, code or counter
+    let sortTitle = []        // EO titles to be sorted
+    const currentTitle = []   // Current EO titles (i.e. GIS4212 - PM Methods)
     const sortedElement = []  // li elements after sorted
     const currentLis = view2.getElementsByClassName('list-item') // Cuurent li elements
     const sortTarget = view2.getElementsByClassName('itemTitle') // span elements with itemTitle class
