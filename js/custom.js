@@ -365,34 +365,16 @@ $(function() {
 
   // When Course name/Course code/Counter is clicked
   $('.sort-option').click(function() {
-    let sortFlg               // name, code or counter
-    let sortTitle = []        // EO titles to be sorted
+    let sortFlg                       // name, code or counter
+    let sortTitle = []                // EO titles to be sorted
+    let value = $(this).attr('value') // Value of sort menu
     const currentTitle = []   // Current EO titles (i.e. GIS4212 - PM Methods)
     const sortedElement = []  // li elements after sorted
     const currentLis = view2.getElementsByClassName('list-item') // Cuurent li elements
     const sortTarget = view2.getElementsByClassName('itemTitle') // span elements with itemTitle class
     const sortCounter = view2.getElementsByClassName('counter')  // number of the EO in the tree
 
-    // sortItems(): sort elements in sortTitle array
-    function sortItems(sortFlg) {
-      sortTitle.sort(function(a, b) {
-        // If sort by course name
-        if (sortFlg === 'name') {
-          a = a.toString().toLowerCase()
-          b = b.toString().toLowerCase()
-        }
-        // Sort elements in sortTitle array
-        if (a < b) {
-          return -1
-        } else if (a > b) {
-          return 1
-        }
-        return 0
-      })
-    }
-
-    // Get a value of sort menu
-    let value = $(this).attr('value')
+    // Set sort type
     if (value === 'Course code') {
       sortFlg = 'code'
     } else if (value === 'Course name') {
@@ -428,7 +410,20 @@ $(function() {
     sortTitle = currentTitle.slice()
 
     // Sort EOs in sortTitle array
-    sortItems(sortFlg)
+    sortTitle.sort(function(a, b) {
+      // If sort by course name
+      if (sortFlg === 'name') {
+        a = a.toString().toLowerCase()
+        b = b.toString().toLowerCase()
+      }
+      // Sort elements in sortTitle array
+      if (a < b) {
+        return -1
+      } else if (a > b) {
+        return 1
+      }
+      return 0
+    })
 
     // Set li elements in the order of sortTitle array
     for (let j = 0; j < currentLis.length; j++) {
