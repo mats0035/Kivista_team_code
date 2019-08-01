@@ -22,9 +22,6 @@ function filterNames(view) {
   }
 }
 $(function() {
-/*
-* Variables
-*/
   // Array of EO titles
   const titleArray = [ "* Leading Projects", "GIS4207 - Create Dynamic Web Pages", "GIS4204 - Electromagnetic Spectrum", "GIS4110 - Extracting and Combining Features", "GIS4111 - Feature Generalization", "GIS4111 - Geographic Reference Systems", "GIS4112 - Historic Cartography", "GIS4110 - Human Geography", "GIS4112 - Information Graphic Principles", "GIS4204 - Knowledge of Physics and Sensors", "Map Design Principles", "GIS4110 - Physical Geography", "GIS4111 - Projection Transformation", "GIS4107 - Simple Programs", "GIS4111 - Static Web Pages with Design", "GIS4111, GIS4113 - Strategic Purpose", "GIS4112 - Summary Statistics (non-spatial)", "GIS4111 - Tech Writing", "GIS4112 - Various Map Types", "Visual Variables", "Web Mapping Applications HTML/CSS/JS API"]
 
@@ -48,9 +45,6 @@ $(function() {
   let clicked = []        // Array to hold guids and the status of star icons (i.e. {guid: guid_1, clicked: true})
   let scrollbar, container, containerY, containerH, result, instance, style
 
-  /*
-  * Functions
-  */
   // updateEoCounter(): Update EO counters
   function updateEoCounter (action, guids) {
     for (let i=0; i < guids.length;i++) {
