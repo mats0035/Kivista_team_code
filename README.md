@@ -22,7 +22,7 @@ updateEoCounter function counts the number of EOs in the foundation view by guid
 
 ### Sort EOs
 Sort elements in the EO list by course name, course code and counter in the EO (right-side) list.  
-Sort by course name: Sort elements in alphabetical order of the EO titles (i.e. "PM Methods")
+Sort by course name: Sort elements in alphabetical order of the EO titles (i.e. "PM Methods").  
 Sort by course code: Sorts elements by course codes and EO titles (i.e. "GSI4212 - PM Mothodes"). This is to sort the EOs with a same course code in alphabetical order.  
 Sort by counter: Sort elements by the number of EOs in the Foundation view. To differentiate the EOs with a same number, this option combines the counter with the course code and course name before sorting. (i.e. "GIS4212 - PM Methods 0" -> "0GIS4212 - PM Methods")
 
